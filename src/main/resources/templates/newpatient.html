@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div>
+    <form th:action="@{/dashboard/newpatient}" th:object="${patient}" method="post">
+      <div>
+          <label>First Name:</label>
+          <input type="text" th:field="*{firstName}" placeholder="Enter the patient's first name"/>
+      </div>
+        <div>
+            <label>Last Name:</label>
+            <input type="text" th:field="*{lastName}" placeholder="Enter the patient's last name"/>
+        </div>
+        <div>
+            <label>Doctor's Name:</label>
+            <input type="text" th:field="*{doctor}" placeholder="Enter the patient's doctor's name"/>
+        </div>
+        <button>Add Patient</button>
+    </form>
+  </div>
+</body>
+</html>
