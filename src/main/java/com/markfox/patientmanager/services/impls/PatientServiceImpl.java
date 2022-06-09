@@ -52,6 +52,12 @@ public class PatientServiceImpl implements PatientService {
 
 
 //    @Override
+//    public List<Patient> getPatientsByDocId(Long docId) {
+//        return patientRepository.getPatientsByDocId(docId);
+//    }
+
+
+//    @Override
 //    public Page<Patient> getPatientByDocId(Long docId, Pageable pageable) {
 //        return patientRepository.findAll(pageable);
 //    }

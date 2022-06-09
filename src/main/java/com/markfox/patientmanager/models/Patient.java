@@ -20,21 +20,32 @@ public class Patient {
     @Column(name = "doctor")
     private String doctor;
 
-//    @ManyToOne(fetch=FetchType.LAZY, optional = false)
-//    @JoinColumn()//name="docId")
-//    @JsonIgnore
-//    private Doctor doc;
+    @ManyToOne(fetch=FetchType.LAZY, optional = false
+//            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+//            CascadeType.DETACH, CascadeType.REFRESH}
+    )
+    @JoinColumn(name="docId")   // name of join-column added to patients table
+    @JsonIgnore
+    private Doctor doc;
 
 
     public Patient() {
 
     }
 
-    public Patient(String firstName, String lastName, String doctor) {
+    public Patient(String firstName, String lastName, String doctor, Doctor doc) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.doctor = doctor;
+        this.doc = doc;
     }
+
+    //    public Patient(String firstName, String lastName, String doctor, Doctor doc) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.doctor = doctor;
+//        this.doc = doc;
+//    }
 
     public Long getId() {
         return id;
@@ -68,7 +79,16 @@ public class Patient {
         this.doctor = doctor;
     }
 
-//    public Doctor getDoc() {
+    public Doctor getDoc() {
+        return doc;
+    }
+
+    public void setDoc(Doctor doc) {
+        this.doc = doc;
+    }
+
+
+    //    public Doctor getDoc() {
 //        return doc;
 //    }
 //

@@ -8,5 +8,5 @@ import java.util.List;
 public interface DoctorService {
     List<Doctor> getAllDoctors();
     Doctor getDoctorById(Long id);
-//    List<Patient> getAllDocsPatients();
+    List<Patient> getAllDocsPatients(Long id);
 }

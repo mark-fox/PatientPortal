@@ -14,8 +14,8 @@
         <th>Patient ID</th>
         <th>Patient First Name</th>
         <th>Patient Last Name</th>
-        <th>DOB</th>
-        <th>Last Visit</th>
+<!--        <th>DOB</th>-->
+<!--        <th>Last Visit</th>-->
     </tr>
     </thead>
     <tbody>
@@ -23,8 +23,8 @@
         <td><a th:text="${patient.id}" th:href="@{/dashboard/{id} (id=${patient.id})}"></a></td>
         <td th:text = "${patient.firstName}"></td>
         <td th:text = "${patient.lastName}"></td>
-        <td th:text = "${patient.dob}">date of birth</td>
-        <td th:text = "${patient.lastvisit}">last visit date</td>
+<!--        <td th:text = "${patient.dob}">date of birth</td>-->
+<!--        <td th:text = "${patient.lastvisit}">last visit date</td>-->
     </tr>
     </tbody>
 </table>

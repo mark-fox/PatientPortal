@@ -14,7 +14,6 @@ public interface PatientService {
     void deletePatientById(Long id);
     Patient addPatient(Patient patient);
 
-
 //    List<Patient> getPatientsByDocId(Long docId);
 //    Page<Patient> getPatientByDocId(Long docId, Pageable pageable);
 }
