@@ -48,11 +48,15 @@ public class PatientController {
     }
     @PostMapping("/dashboard/newpatient")
     public String addNewPatient(@ModelAttribute("patient") Patient patient, Model model) {
+
 //        System.out.println(model.getAttribute("doctorid"));
-        patient.setDoc(new Doctor("rick", "sanchez"));
+        Doctor testdoc = doctorService.getDoctorById(1L); // new Doctor("rick", "sanchez");
+        patient.setDoc(testdoc);
+//        Patient test = new Patient("abc", "dfe", "mydoc", testdoc);
+        patientService.addPatient(patient);
+
+
 //        patientService.addPatient(patient);
-        Patient test = new Patient();
-        patientService.addPatient(test);
         return "redirect:/dashboard";
     }
 

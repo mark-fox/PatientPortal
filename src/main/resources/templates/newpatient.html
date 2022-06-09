@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Add New Patient</title>
+    <div th:replace="fragments/stylesheets :: styles"></div>
 </head>
 <body>
+<div th:replace="fragments/navbar :: navigation"></div>
   <div>
     <form th:action="@{/dashboard/newpatient}" th:object="${patient}" method="post">
       <div>
@@ -29,5 +31,6 @@
         <button>Add Patient</button>
     </form>
   </div>
+<div th:replace="fragments/bootstrapscripts :: scripts"></div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.markfox.patientmanager.controllers;
 
+import com.markfox.patientmanager.models.Doctor;
+import com.markfox.patientmanager.models.Patient;
 import com.markfox.patientmanager.services.DoctorService;
 import com.markfox.patientmanager.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +30,12 @@ public class DoctorController {
         model.addAttribute("doctor", doctorService.getDoctorById(id));
         model.addAttribute("patients", doctorService.getAllDocsPatients(id));
         return "viewdoctor";
+    }
+
+    @GetMapping("/doctors/newdoctor")
+    public String viewNewDoctor(Model model) {
+        Doctor doctor = new Doctor();
+        model.addAttribute("doctor", doctor);
+        return "newdoctor";
     }
 }
