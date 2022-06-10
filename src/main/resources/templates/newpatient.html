@@ -22,11 +22,11 @@
             <input type="text" th:field="*{doctor}" placeholder="Enter the patient's doctor's name"/>
         </div>
         <div>
-<!--            <select th:field="*{doctorid}">-->
-<!--&lt;!&ndash;                    th:field="*{doc}">&ndash;&gt;-->
-<!--                <option th:each="doct:${doctors}" th:value="${doct.id}"></option>-->
-<!--&lt;!&ndash;                th:text="'Dr. ' + ${doct.firstName} + ' ' + ${doct.lastName}"></option>&ndash;&gt;-->
-<!--            </select>-->
+            <select name="doctorId" th:field="*{doc.docId}">
+<!--                th:field="*{doc}">-->
+                <option th:each="doct:${doctors}" th:value="${doct.docId}" th:text="${doct.firstName}"></option>
+<!--                th:text="'Dr. ' + ${doct.firstName} + ' ' + ${doct.lastName}"></option>-->
+            </select>
         </div>
         <button>Add Patient</button>
     </form>

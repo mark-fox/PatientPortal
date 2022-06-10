@@ -9,10 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,16 +44,23 @@ public class PatientController {
         return "newpatient";
     }
     @PostMapping("/dashboard/newpatient")
-    public String addNewPatient(@ModelAttribute("patient") Patient patient, Model model) {
-
+    public String addNewPatient(@ModelAttribute("patient") Patient patient, Model model) { //  @RequestParam Doctor doc,
+//        System.out.println(patient.getId());
+//        System.out.println(patient.getFirstName());
+//        System.out.println(patient.getLastName());
+//        System.out.println(patient.getDoc().getDocId());
+//        System.out.println(patient.getDoc().getFirstName());
+//        System.out.println(patient.getDoc().getDocsPatients());
+//        System.out.println(model);
+//        System.out.println(model.getAttribute("doctorId"));
 //        System.out.println(model.getAttribute("doctorid"));
-        Doctor testdoc = doctorService.getDoctorById(1L); // new Doctor("rick", "sanchez");
-        patient.setDoc(testdoc);
+//        Doctor testdoc = doctorService.getDoctorById(1L); // new Doctor("rick", "sanchez");
+//        patient.setDoc(testdoc);
 //        Patient test = new Patient("abc", "dfe", "mydoc", testdoc);
+//        patientService.addPatient(test);
+
+        patient.setDoc(doctorService.getDoctorById(patient.getDoc().getDocId()));
         patientService.addPatient(patient);
-
-
-//        patientService.addPatient(patient);
         return "redirect:/dashboard";
     }
 
