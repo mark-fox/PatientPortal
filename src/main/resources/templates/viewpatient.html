@@ -12,8 +12,11 @@
     <input type="text" th:field="*{firstName}"/>
     <input type="text" th:field="*{lastName}"/>
     <input type="text" th:field="*{doctor}"/>
+    <button id="toggleBtn">Enable Edit</button>
     <button>Update Patient</button>
 </form>
+
 <div th:replace="fragments/bootstrapscripts :: scripts"></div>
+<script th:src="@{/js/viewpatientjs.js}"></script>
 </body>
 </html>
