@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class DoctorController {
@@ -37,5 +39,10 @@ public class DoctorController {
         Doctor doctor = new Doctor();
         model.addAttribute("doctor", doctor);
         return "newdoctor";
+    }
+    @PostMapping("/doctors/newdoctor")
+    public String addNewDoctor(@ModelAttribute("doctor") Doctor doctor) {
+        doctorService.addDoctor(doctor);
+        return "redirect:/doctors";
     }
 }

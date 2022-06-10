@@ -8,6 +8,21 @@
 <body>
 <div th:replace="fragments/navbar :: navigation"></div>
 
+<div>
+    <form th:action="@{/doctors/newdoctor}" th:object="${doctor}" method="post">
+        <div>
+            <label>First Name:</label>
+            <input type="text" th:field="*{firstName}" placeholder="Enter the doctor's first name"/>
+        </div>
+        <div>
+            <label>Last Name:</label>
+            <input type="text" th:field="*{lastName}" placeholder="Enter the doctor's last name"/>
+        </div>
+
+        <button>Add Doctor</button>
+    </form>
+</div>
+
 <div th:replace="fragments/bootstrapscripts :: scripts"></div>
 </body>
 </html>

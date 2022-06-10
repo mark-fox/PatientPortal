@@ -9,4 +9,6 @@ public interface DoctorService {
     List<Doctor> getAllDoctors();
     Doctor getDoctorById(Long id);
     List<Patient> getAllDocsPatients(Long id);
+    Doctor addDoctor(Doctor doctor);
+    Doctor updateDoctor(Doctor doctor);
 }

@@ -30,4 +30,14 @@ public class DoctorServiceImpl implements DoctorService {
     public List<Patient> getAllDocsPatients(Long id) {
         return doctorRepository.findById(id).get().getDocsPatients();
     }
+
+    @Override
+    public Doctor addDoctor(Doctor doctor) {
+        return doctorRepository.save(doctor);
+    }
+
+    @Override
+    public Doctor updateDoctor(Doctor doctor) {
+        return doctorRepository.save(doctor);
+    }
 }
