@@ -7,7 +7,7 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: navigation"></div>
-<h1>Doctor's Patients</h1>
+<h1 th:text="'Dr. ' + ${doctor.firstName} + ' ' + ${doctor.lastName} + '\'s Patient'">Doctor's Patients</h1>
 <table>
     <thead>
     <tr>

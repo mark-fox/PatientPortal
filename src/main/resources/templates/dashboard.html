@@ -9,7 +9,7 @@
 <body>
 <div th:replace="fragments/navbar :: navigation"></div>
 <!--    <div th:replace="fragments/navbar"></div>-->
-  <h1>Dashboard Page</h1>
+  <h1>Patients</h1>
 
     <table>
         <thead>
@@ -18,6 +18,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Doctor</th>
+            <th>Doc</th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +27,8 @@
             <td th:text = "${patient.firstName}"></td>
             <td th:text = "${patient.lastName}"></td>
             <td th:text = "${patient.doctor}"></td>
+            <td><a th:text="'Dr. ' + ${patient.doc.firstName} + ' ' + ${patient.doc.lastName}"
+                   th:href="@{/doctors/{docId} (docId=${patient.doc.docId})}"></a></td>
         </tr>
         </tbody>
     </table>
