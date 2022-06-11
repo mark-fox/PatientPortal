@@ -67,6 +67,7 @@ public class PatientController {
     @GetMapping("/dashboard/{id}")
     public String viewPatient(@PathVariable Long id, Model model) {
         model.addAttribute("patient", patientService.getPatientById(id));
+        model.addAttribute("doctors", doctorService.getAllDoctors());
         return "viewpatient";
     }
     @PostMapping("/dashboard/{id}")
@@ -75,6 +76,7 @@ public class PatientController {
         savedPatient.setFirstName(patient.getFirstName());
         savedPatient.setLastName(patient.getLastName());
         savedPatient.setDoctor(patient.getDoctor());
+        savedPatient.setDoc(doctorService.getDoctorById(patient.getDoc().getDocId()));
 
         patientService.updatePatient(savedPatient);
         return "redirect:/dashboard";

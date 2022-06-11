@@ -9,9 +9,26 @@
 <div th:replace="fragments/navbar :: navigation"></div>
 <h1 th:text="${patient.firstName} + ' ' + ${patient.lastName} + '\'s Info'">Patient Info</h1>
 <form th:action="@{/dashboard/{id} (id=${patient.id})}" th:object="${patient}" method="post">
-    <input type="text" th:field="*{firstName}"/>
-    <input type="text" th:field="*{lastName}"/>
-    <input type="text" th:field="*{doctor}"/>
+    <div>
+        <label>First Name:</label>
+        <input type="text" th:field="*{firstName}"/>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" th:field="*{lastName}"/>
+    </div>
+    <div>
+        <label>Doctor:</label>
+        <input type="text" th:field="*{doctor}"/>
+    </div>
+    <div>
+        <label>Doc:</label>
+        <select name="doctorId" th:field="*{doc.docId}">
+            <option th:each="doct:${doctors}" th:value="${doct.docId}"
+                    th:text="'Dr. ' + ${doct.firstName} + ' ' + ${doct.lastName}"
+                    th:selected="${doct.docId == patient.doc.docId}"></option>
+        </select>
+    </div>
     <button id="toggleBtn">Enable Edit</button>
     <button id="patientUpdateBtn">Update Patient</button>
 </form>

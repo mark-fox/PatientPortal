@@ -24,7 +24,8 @@
         <div>
             <select name="doctorId" th:field="*{doc.docId}">
 <!--                th:field="*{doc}">-->
-                <option th:each="doct:${doctors}" th:value="${doct.docId}" th:text="${doct.firstName}"></option>
+                <option th:each="doct:${doctors}" th:value="${doct.docId}"
+                        th:text="'Dr. ' + ${doct.firstName} + ' ' + ${doct.lastName}"></option>
 <!--                th:text="'Dr. ' + ${doct.firstName} + ' ' + ${doct.lastName}"></option>-->
             </select>
         </div>
