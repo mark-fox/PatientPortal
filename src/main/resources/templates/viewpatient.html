@@ -7,13 +7,13 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: navigation"></div>
-<h1></h1>
+<h1 th:text="${patient.firstName} + ' ' + ${patient.lastName} + '\'s Info'">Patient Info</h1>
 <form th:action="@{/dashboard/{id} (id=${patient.id})}" th:object="${patient}" method="post">
     <input type="text" th:field="*{firstName}"/>
     <input type="text" th:field="*{lastName}"/>
     <input type="text" th:field="*{doctor}"/>
     <button id="toggleBtn">Enable Edit</button>
-    <button>Update Patient</button>
+    <button id="patientUpdateBtn">Update Patient</button>
 </form>
 
 <div th:replace="fragments/bootstrapscripts :: scripts"></div>
