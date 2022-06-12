@@ -1,6 +1,8 @@
 package com.markfox.patientmanager.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -10,7 +12,7 @@ public class VisitNotes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="visitId", nullable = false)
-    private int id;
+    private Long id;
 
     @Column(name="reason", nullable = false)
     private String visitReason;
@@ -21,5 +23,8 @@ public class VisitNotes {
     @Column(name="visitdate", nullable = false)
     private Date visitDate;
 
-    //foreign key
+    @ManyToOne(fetch=FetchType.LAZY, optional = false)
+    @JoinColumn(name="patientId")
+    @JsonIgnore
+    private Patient patient;
 }
