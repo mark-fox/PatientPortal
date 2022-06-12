@@ -8,7 +8,7 @@ $("#toggleBtn").click(function(event) {
 })
 
 $.enableEdit = function() {
-    $("input").toggle();
+    $("#patientForm input").toggle();
     $("#patientUpdateBtn").toggle();
     $("select").toggle();
 }
