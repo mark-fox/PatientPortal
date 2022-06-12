@@ -2,8 +2,10 @@ package com.markfox.patientmanager.controllers;
 
 import com.markfox.patientmanager.models.Doctor;
 import com.markfox.patientmanager.models.Patient;
+import com.markfox.patientmanager.models.VisitNotes;
 import com.markfox.patientmanager.services.DoctorService;
 import com.markfox.patientmanager.services.PatientService;
+import com.markfox.patientmanager.services.VisitNotesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -18,9 +24,11 @@ public class PatientController {
     private PatientService patientService;
     @Autowired
     private DoctorService doctorService;
+    private VisitNotesService visitNotesService;
 
-    public PatientController(PatientService patientService) {
+    public PatientController(PatientService patientService, VisitNotesService visitNotesService) {
         this.patientService = patientService;
+        this.visitNotesService = visitNotesService;
     }
 
 
@@ -32,6 +40,15 @@ public class PatientController {
     @GetMapping("/dashboard")
     public String viewAllPatients(Model model) {
         model.addAttribute("patients", patientService.getAllPatients());
+
+        // for testing:
+//        VisitNotes testnote = new VisitNotes();
+//        testnote.setDescription("desc");
+//        testnote.setVisitReason("reas");
+//        testnote.setVisitDate(LocalDate.of(2001,1,1));
+//        testnote.setVisitsPatient(patientService.getPatientById(15L));
+//        visitNotesService.addVisitNotes(testnote);
+
         return "dashboard";
     }
 
@@ -68,6 +85,7 @@ public class PatientController {
     public String viewPatient(@PathVariable Long id, Model model) {
         model.addAttribute("patient", patientService.getPatientById(id));
         model.addAttribute("doctors", doctorService.getAllDoctors());
+        model.addAttribute("visits", patientService.getAllVisitNotes(id));
         return "viewpatient";
     }
     @PostMapping("/dashboard/{id}")

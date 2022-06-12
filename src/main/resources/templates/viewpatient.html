@@ -33,8 +33,17 @@
     <button id="patientUpdateBtn">Update Patient</button>
 </form>
 <hr>
-<div>
-    <textarea>text</textarea>
+<h3>Visit Notes</h3>
+<div th:each="visit:${visits}">
+    <div>
+        <label>Reason for Visit:</label>
+        <input type="text" th:value="${visit.visitReason}">
+    </div>
+    <div>
+        <label>What was discussed during this visit:</label>
+        <br>
+        <textarea th:text="${visit.description}"></textarea>
+    </div>
 </div>
 <div th:replace="fragments/bootstrapscripts :: scripts"></div>
 <script th:src="@{/js/viewpatientjs.js}"></script>

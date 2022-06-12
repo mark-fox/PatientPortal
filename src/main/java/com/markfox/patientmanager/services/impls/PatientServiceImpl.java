@@ -1,6 +1,7 @@
 package com.markfox.patientmanager.services.impls;
 
 import com.markfox.patientmanager.models.Patient;
+import com.markfox.patientmanager.models.VisitNotes;
 import com.markfox.patientmanager.repositories.PatientRepository;
 import com.markfox.patientmanager.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,21 +50,8 @@ public class PatientServiceImpl implements PatientService {
         return patientRepository.save(patient);
     }
 
-
-
-//    @Override
-//    public List<Patient> getPatientsByDocId(Long docId) {
-//        return patientRepository.getPatientsByDocId(docId);
-//    }
-
-
-//    @Override
-//    public Page<Patient> getPatientByDocId(Long docId, Pageable pageable) {
-//        return patientRepository.findAll(pageable);
-//    }
-
-//    @Override
-//    public List<Patient> getPatientsByDocId(Long docId) {
-//        return patientRepository.findAllById(Iterable<docId>);
-//    }
+    @Override
+    public List<VisitNotes> getAllVisitNotes(Long id) {
+        return patientRepository.findById(id).get().getPatientVisits();
+    }
 }

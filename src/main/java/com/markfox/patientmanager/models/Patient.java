@@ -3,6 +3,7 @@ package com.markfox.patientmanager.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="patients")
@@ -28,6 +29,8 @@ public class Patient {
     @JsonIgnore
     private Doctor doc;
 
+    @OneToMany(targetEntity = VisitNotes.class, mappedBy = "visitsPatient")
+    private List<VisitNotes> patientVisits;
 
     public Patient() {
 
@@ -40,12 +43,7 @@ public class Patient {
         this.doc = doc;
     }
 
-    //    public Patient(String firstName, String lastName, String doctor, Doctor doc) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.doctor = doctor;
-//        this.doc = doc;
-//    }
+
 
     public Long getId() {
         return id;
@@ -88,11 +86,11 @@ public class Patient {
     }
 
 
-    //    public Doctor getDoc() {
-//        return doc;
-//    }
-//
-//    public void setDoc(Doctor doc) {
-//        this.doc = doc;
-//    }
+    public List<VisitNotes> getPatientVisits() {
+        return patientVisits;
+    }
+
+    public void setPatientVisits(List<VisitNotes> patientVisits) {
+        this.patientVisits = patientVisits;
+    }
 }
