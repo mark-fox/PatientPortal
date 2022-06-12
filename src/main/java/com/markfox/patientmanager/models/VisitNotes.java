@@ -2,6 +2,7 @@ package com.markfox.patientmanager.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -22,6 +23,7 @@ public class VisitNotes {
     private String description;
 
     @Column(name="visitdate", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 //    @Temporal(TemporalType.DATE)
     private LocalDate visitDate;
 

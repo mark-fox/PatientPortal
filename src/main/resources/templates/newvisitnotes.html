@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Visit Notes</title>
+  <div th:replace="fragments/stylesheets :: styles"></div>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navigation"></div>
+
+<h1 th:text="'Adding New Visit Notes for ' + ${patient.firstName} + ' ' + ${patient.lastName}">Adding New Visit Notes</h1>
+
+<div>
+  <form th:action="@{/newnotes/{id} (id=${patient.id})}" th:object="${visit}" method="post">
+    <div>
+    <label>Reason for Visit:</label>
+      <input type="text" th:field="*{visitReason}" placeholder="Reason...">
+    </div>
+    <div>
+      <label>Date of Visit:</label>
+      <input type="date" th:field="*{visitDate}">
+    </div>
+    <div>
+      <label>What was discussed during this visit:</label>
+      <br>
+      <textarea th:field="*{description}" placeholder="Enter notes about the visit here"></textarea>
+    </div>
+    <div>
+      <button>Add Visit Notes</button>
+    </div>
+  </form>
+</div>
+
+<div th:replace="fragments/bootstrapscripts :: scripts"></div>
+</body>
+</html>
