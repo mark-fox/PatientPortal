@@ -48,6 +48,10 @@
         <input type="text" th:value="${visit.visitReason}">
     </div>
     <div>
+        <label>Date of Visit</label>
+        <input type="text" th:value="${visit.visitDate}">
+    </div>
+    <div>
         <label>What was discussed during this visit:</label>
         <br>
         <textarea th:text="${visit.description}"></textarea>

@@ -2,8 +2,10 @@
 <body>
 <div th:fragment="navigation">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!--        <nav class="navbar navbar-expand-md sticky-top">-->
+<!--       add to nav class fixed-top, but it overlaps-->
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Patient Portal</a>
+            <a class="navbar-brand" th:href="@{/dashboard}">Patient Portal</a>
             <button
                     class="navbar-toggler"
                     type="button"
@@ -18,32 +20,45 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" th:href="@{/dashboard}">Home</a>
+                        <a class="nav-link active" aria-current="page" th:href="@{/dashboard}">Patients</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" aria-current="page" th:href="@{/doctors}">Doctors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled"
-                        >Disabled</a
-                        >
+                        <a class="nav-link" href="#">Something</a>
+                    </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link disabled"-->
+<!--                        >Disabled</a-->
+<!--                        >-->
+<!--                    </li>-->
+                </ul>
+
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
                     </li>
                 </ul>
-                <form class="d-flex input-group w-auto">
-                    <input
-                            type="search"
-                            class="form-control"
-                            placeholder="Type query"
-                            aria-label="Search"
-                    />
-                    <button
-                            class="btn btn-outline-primary"
-                            type="button"
-                            data-mdb-ripple-color="dark"
-                    >
-                        Search
-                    </button>
-                </form>
+
+<!--                <form class="d-flex input-group w-auto">-->
+<!--                    <input-->
+<!--                            type="search"-->
+<!--                            class="form-control"-->
+<!--                            placeholder="Type query"-->
+<!--                            aria-label="Search"-->
+<!--                    />-->
+<!--                    <button-->
+<!--                            class="btn btn-outline-primary"-->
+<!--                            type="button"-->
+<!--                            data-mdb-ripple-color="dark"-->
+<!--                    >-->
+<!--                        Search-->
+<!--                    </button>-->
+<!--                </form>-->
             </div>
         </div>
     </nav>
