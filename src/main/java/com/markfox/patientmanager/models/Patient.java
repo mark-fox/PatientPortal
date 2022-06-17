@@ -29,7 +29,7 @@ public class Patient {
     @JsonIgnore
     private Doctor doc;
 
-    @OneToMany(targetEntity = VisitNotes.class, mappedBy = "visitsPatient")
+    @OneToMany(targetEntity = VisitNotes.class, mappedBy = "visitsPatient", cascade = {CascadeType.REMOVE})
     private List<VisitNotes> patientVisits;
 
     public Patient() {

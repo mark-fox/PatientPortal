@@ -103,7 +103,7 @@ public class PatientController {
     @PostMapping(value="/dashboard/{id}", params = "delPatient")
     public String deletePatient(@PathVariable Long id) {
         System.out.println("delete route reached");
-//        patientService.deletePatientById(id);
+        patientService.deletePatientById(id);
         return "redirect:/dashboard";
     }
     // onetomany attempt

@@ -30,4 +30,10 @@ public class VisitNotesServiceImpl implements VisitNotesService {
     public VisitNotes addVisitNotes(VisitNotes notes) {
         return visitNotesRepository.save(notes);
     }
+
+    @Override
+    public void deleteVisitNoteById(Long id) {
+        System.out.println("visit note is being deleted");
+        visitNotesRepository.deleteById(id);
+    }
 }

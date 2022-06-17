@@ -38,4 +38,11 @@ public class VisitNotesController {
         visitNotesService.addVisitNotes(visitNotes);
         return "redirect:/dashboard/{id}";
     }
+
+    @PostMapping("/deletenote/{id}")
+    public String deleteVisitNotes(@PathVariable Long id) {
+        visitNotesService.deleteVisitNoteById(id);
+        return "redirect:/dashboard";
+    }
+
 }

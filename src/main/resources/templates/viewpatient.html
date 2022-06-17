@@ -64,6 +64,11 @@
         <label>What was discussed during this visit:</label>
         <br>
         <textarea th:text="${visit.description}"></textarea>
+
+        <form th:action="@{/deletenote/{id} (id=${visit.id})}" method="post">
+            <button type="submit">Delete</button>
+        </form>
+
     </div>
 </div>
 
