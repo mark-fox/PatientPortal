@@ -42,7 +42,8 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public void deletePatientById(Long id) {
-
+        System.out.println("say goodbye to: " + id);
+        patientRepository.deleteById(id);
     }
 
     @Override

@@ -7,6 +7,11 @@ $("#toggleBtn").click(function(event) {
     // $("#patientUpdateBtn").toggle();
 })
 
+// $("#patientDeleteBtn").click(function(event) {
+//     // event.preventDefault();
+//     console.log("delete button pressed");
+// })
+
 $.enableEdit = function() {
     $("#patientForm input").toggle();
     $("#patientUpdateBtn").toggle();

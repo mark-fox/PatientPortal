@@ -95,11 +95,17 @@ public class PatientController {
         savedPatient.setLastName(patient.getLastName());
         savedPatient.setDoctor(patient.getDoctor());
         savedPatient.setDoc(doctorService.getDoctorById(patient.getDoc().getDocId()));
-
+        System.out.println("update route reached");
         patientService.updatePatient(savedPatient);
         return "redirect:/dashboard";
     }
 
+    @PostMapping(value="/dashboard/{id}", params = "delPatient")
+    public String deletePatient(@PathVariable Long id) {
+        System.out.println("delete route reached");
+        patientService.deletePatientById(id);
+        return "redirect:/dashboard";
+    }
     // onetomany attempt
 //    @GetMapping("/testing/{docId}")
 //    public Page<Patient> testingattempt(@PathVariable(value="docId") Long docId, Pageable pageable) {
