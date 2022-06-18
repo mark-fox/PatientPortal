@@ -32,8 +32,8 @@ public class VisitNotesController {
     public String addNewVisitNotes(@PathVariable Long id,
                                    @ModelAttribute("visit") VisitNotes visitNotes) {
         visitNotes.setVisitsPatient(patientService.getPatientById(id));
-        System.out.println(visitNotes.getVisitDate());
-        System.out.println(visitNotes.getVisitDate().getClass().getName());
+//        System.out.println(visitNotes.getVisitDate());
+//        System.out.println(visitNotes.getVisitDate().getClass().getName());
         visitNotes.setVisitDate(visitNotes.getVisitDate());
         visitNotesService.addVisitNotes(visitNotes);
         return "redirect:/dashboard/{id}";

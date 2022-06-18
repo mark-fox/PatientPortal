@@ -7,6 +7,13 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: navigation"></div>
+
+
+<div class="main">
+    <div class="container">
+        <div class="box border mt-5 p-5">
+
+
 <h1 th:text="${patient.firstName} + ' ' + ${patient.lastName} + '\'s Info'">Patient Info</h1>
 <form th:action="@{/dashboard/{id} (id=${patient.id})}" th:object="${patient}" method="post" id="patientForm">
     <div>
@@ -29,7 +36,7 @@
                     th:selected="${doct.docId == patient.doc.docId}"></option>
         </select>
     </div>
-    <button id="toggleBtn">Enable Edit</button>
+    <button id="toggleBtn"><i class="bi-pencil"></i> Enable Edit</button>
     <button id="patientUpdateBtn">Update Patient</button>
     <button type="submit"
             name="delPatient"
@@ -66,7 +73,7 @@
         <textarea th:text="${visit.description}"></textarea>
 
         <form th:action="@{/deletenote/{id} (id=${visit.id})}" method="post">
-            <button type="submit">Delete</button>
+            <button type="submit"><i class="bi-trash"></i></button>
         </form>
 
     </div>
@@ -74,5 +81,10 @@
 
 <div th:replace="fragments/bootstrapscripts :: scripts"></div>
 <script th:src="@{/js/viewpatientjs.js}"></script>
+
+
+</div>
+</div>
+</div>
 </body>
 </html>

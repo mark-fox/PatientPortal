@@ -1,11 +1,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div th:fragment="navigation">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!--    <div id="navbarDiv">-->
+
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
 <!--        <nav class="navbar navbar-expand-md sticky-top">-->
 <!--       add to nav class fixed-top, but it overlaps-->
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark bg-gradient">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/dashboard}">Patient Portal</a>
+            <a class="navbar-brand" th:href="@{/dashboard}"><i class="bi-activity"></i> Patient Portal <i class="bi-activity"></i></a>
             <button
                     class="navbar-toggler"
                     type="button"
@@ -28,11 +31,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Something</a>
                     </li>
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link disabled"-->
-<!--                        >Disabled</a-->
-<!--                        >-->
-<!--                    </li>-->
                 </ul>
 
                 <ul class="navbar-nav navbar-right">
@@ -43,25 +41,10 @@
                         <a class="nav-link" href="#">Logout</a>
                     </li>
                 </ul>
-
-<!--                <form class="d-flex input-group w-auto">-->
-<!--                    <input-->
-<!--                            type="search"-->
-<!--                            class="form-control"-->
-<!--                            placeholder="Type query"-->
-<!--                            aria-label="Search"-->
-<!--                    />-->
-<!--                    <button-->
-<!--                            class="btn btn-outline-primary"-->
-<!--                            type="button"-->
-<!--                            data-mdb-ripple-color="dark"-->
-<!--                    >-->
-<!--                        Search-->
-<!--                    </button>-->
-<!--                </form>-->
             </div>
         </div>
     </nav>
+<!--    </div>-->
 </div>
 </body>
 </html>
