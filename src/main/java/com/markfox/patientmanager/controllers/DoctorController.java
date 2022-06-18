@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class DoctorController {
     @Autowired
     private DoctorService doctorService;
-//    @Autowired
-//    private PatientService patientService;
+    @Autowired
+    private PatientService patientService;
 
 
 
@@ -43,6 +43,14 @@ public class DoctorController {
     @PostMapping("/doctors/newdoctor")
     public String addNewDoctor(@ModelAttribute("doctor") Doctor doctor) {
         doctorService.addDoctor(doctor);
+        return "redirect:/doctors";
+    }
+
+    // Change to PostMapping if change to button
+    @GetMapping("/doctors/delete/{id}")
+    public String deleteDoctor(@PathVariable Long id) {
+        patientService.removePatientsDocByDocId(id);
+        doctorService.deleteDoctorById(id);
         return "redirect:/doctors";
     }
 }

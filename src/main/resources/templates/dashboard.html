@@ -23,12 +23,13 @@
         </thead>
         <tbody>
         <tr th:each = "patient: ${patients}">
-            <td><a th:text="${patient.id}" th:href="@{/dashboard/{id} (id=${patient.id})}"></a></td>
+            <td><a th:text="${patient.id}" th:href="@{/dashboard/{id} (id=${patient.id})}">
+                </a></td>
             <td th:text = "${patient.firstName}"></td>
             <td th:text = "${patient.lastName}"></td>
             <td th:text = "${patient.doctor}"></td>
-            <td><a th:text="'Dr. ' + ${patient.doc.firstName} + ' ' + ${patient.doc.lastName}"
-                   th:href="@{/doctors/{docId} (docId=${patient.doc.docId})}"></a></td>
+            <td><a th:text="${patient?.doc?.firstName} + ' ' + ${patient?.doc?.lastName}"
+                   th:href="@{/doctors/{docId} (docId=${patient?.doc?.docId})}"></a></td>
         </tr>
         </tbody>
     </table>

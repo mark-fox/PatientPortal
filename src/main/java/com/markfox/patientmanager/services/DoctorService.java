@@ -11,4 +11,5 @@ public interface DoctorService {
     List<Patient> getAllDocsPatients(Long id);
     Doctor addDoctor(Doctor doctor);
     Doctor updateDoctor(Doctor doctor);
+    void deleteDoctorById(Long id);
 }

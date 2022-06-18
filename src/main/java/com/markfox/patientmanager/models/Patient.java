@@ -21,11 +21,11 @@ public class Patient {
     @Column(name = "doctor")
     private String doctor;
 
-    @ManyToOne(fetch=FetchType.LAZY, optional = false
+    @ManyToOne(fetch=FetchType.LAZY, optional = true
 //            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
 //            CascadeType.DETACH, CascadeType.REFRESH}
     )
-    @JoinColumn(name="docId")   // name of join-column added to patients table
+    @JoinColumn(name="docId", nullable = true)   // name of join-column added to patients table
     @JsonIgnore
     private Doctor doc;
 

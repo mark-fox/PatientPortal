@@ -55,4 +55,8 @@ public class PatientServiceImpl implements PatientService {
     public List<VisitNotes> getAllVisitNotes(Long id) {
         return patientRepository.findById(id).get().getPatientVisits();
     }
+
+    public void removePatientsDocByDocId(Long id) {
+        patientRepository.updatePatientDocByDocId(id);
+    }
 }

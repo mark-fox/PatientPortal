@@ -14,6 +14,7 @@
         <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
         <td><a th:text="${doctor.docId}" th:href="@{/doctors/{id} (id=${doctor.docId})}"></a></td>
         <td th:text = "${doctor.firstName}"></td>
         <td th:text = "${doctor.lastName}"></td>
+        <td><a th:href="@{/doctors/delete/{id} (id=${doctor.docId})}">Delete</a></td>
     </tr>
     </tbody>
 </table>

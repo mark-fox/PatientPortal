@@ -15,4 +15,5 @@ public interface PatientService {
     void deletePatientById(Long id);
     Patient addPatient(Patient patient);
     List<VisitNotes> getAllVisitNotes(Long id);
+    void removePatientsDocByDocId(Long id);
 }
