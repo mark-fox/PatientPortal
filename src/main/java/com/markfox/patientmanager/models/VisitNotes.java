@@ -19,6 +19,7 @@ public class VisitNotes {
     @Column(name="reason", nullable = false)
     private String visitReason;
 
+    @Lob
     @Column(name="description")
     private String description;
 
