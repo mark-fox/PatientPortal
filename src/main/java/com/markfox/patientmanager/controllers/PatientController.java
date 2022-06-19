@@ -117,4 +117,11 @@ public class PatientController {
 //        return "redirect:viewdoctor";
 ////        return patientService.getPatientsByDocId(docId);
 //    }
+
+    @GetMapping("/test")
+    public String testing(Model model) {
+        model.addAttribute("patient", patientService.getPatientById(7L));
+        model.addAttribute("visits", patientService.getAllVisitNotes(7L));
+        return "testform";
+    }
 }

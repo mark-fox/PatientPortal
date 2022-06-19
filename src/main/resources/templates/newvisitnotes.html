@@ -6,7 +6,7 @@
   <div th:replace="fragments/stylesheets :: styles"></div>
 </head>
 <body>
-<div th:replace="fragments/navbar :: navigation"></div>
+<header th:insert="fragments/navbar :: navigation"></header>
 
 <h1 th:text="'Adding New Visit Notes for ' + ${patient.firstName} + ' ' + ${patient.lastName}">Adding New Visit Notes</h1>
 

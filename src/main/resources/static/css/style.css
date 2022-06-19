@@ -2,7 +2,12 @@
 /*    top: 0;*/
 /*    overflow: hidden;*/
 /*}*/
-
+header {
+    /*position: absolute;*/
+    position: sticky;
+    top: 0;
+    /*z-index: 999;*/
+}
 
 /*Bootstrap Icons:*/
 .bi {
