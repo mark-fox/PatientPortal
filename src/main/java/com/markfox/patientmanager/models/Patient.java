@@ -18,8 +18,8 @@ public class Patient {
     @Column(name = "lastname", nullable = false)
     private String lastName;
 
-    @Column(name = "doctor")
-    private String doctor;
+//    @Column(name = "doctor")
+//    private String doctor;
 
     @ManyToOne(fetch=FetchType.LAZY, optional = true
 //            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
@@ -36,10 +36,10 @@ public class Patient {
 
     }
 
-    public Patient(String firstName, String lastName, String doctor, Doctor doc) {
+    public Patient(String firstName, String lastName, Doctor doc) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.doctor = doctor;
+//        this.doctor = doctor;
         this.doc = doc;
     }
 
@@ -69,13 +69,13 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public String getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(String doctor) {
-        this.doctor = doctor;
-    }
+//    public String getDoctor() {
+//        return doctor;
+//    }
+//
+//    public void setDoctor(String doctor) {
+//        this.doctor = doctor;
+//    }
 
     public Doctor getDoc() {
         return doc;

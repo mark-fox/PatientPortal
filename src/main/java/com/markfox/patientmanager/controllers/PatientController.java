@@ -93,7 +93,7 @@ public class PatientController {
         Patient savedPatient = patientService.getPatientById(id);
         savedPatient.setFirstName(patient.getFirstName());
         savedPatient.setLastName(patient.getLastName());
-        savedPatient.setDoctor(patient.getDoctor());
+//        savedPatient.setDoctor(patient.getDoctor());
         savedPatient.setDoc(doctorService.getDoctorById(patient.getDoc().getDocId()));
         System.out.println("update route reached");
         patientService.updatePatient(savedPatient);

@@ -17,15 +17,15 @@
             <label>Last Name:</label>
             <input type="text" th:field="*{lastName}" placeholder="Enter the patient's last name"/>
         </div>
-        <div>
-            <label>Doctor's Name:</label>
-            <input type="text" th:field="*{doctor}" placeholder="Enter the patient's doctor's name"/>
-        </div>
+<!--        <div>-->
+<!--            <label>Doctor's Name:</label>-->
+<!--            <input type="text" th:field="*{doctor}" placeholder="Enter the patient's doctor's name"/>-->
+<!--        </div>-->
         <div>
             <select name="doctorId" th:field="*{doc.docId}">
 <!--                th:field="*{doc}">-->
-                <option th:each="doct:${doctors}" th:value="${doct.docId}"
-                        th:text="'Dr. ' + ${doct.firstName} + ' ' + ${doct.lastName}"></option>
+                <option th:each="doctor:${doctors}" th:value="${doctor.docId}"
+                        th:text="'Dr. ' + ${doctor.firstName} + ' ' + ${doctor.lastName}"></option>
 <!--                th:text="'Dr. ' + ${doct.firstName} + ' ' + ${doct.lastName}"></option>-->
             </select>
         </div>

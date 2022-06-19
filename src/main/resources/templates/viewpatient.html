@@ -24,16 +24,16 @@
         <label>Last Name:</label>
         <input type="text" th:field="*{lastName}"/>
     </div>
-    <div>
-        <label>Doctor:</label>
-        <input type="text" th:field="*{doctor}"/>
-    </div>
+<!--    <div>-->
+<!--        <label>Doctor:</label>-->
+<!--        <input type="text" th:field="*{doctor}"/>-->
+<!--    </div>-->
     <div>
         <label>Doc:</label>
         <select name="doctorId" th:field="*{doc.docId}">
-            <option th:each="doct:${doctors}" th:value="${doct.docId}"
-                    th:text="'Dr. ' + ${doct.firstName} + ' ' + ${doct.lastName}"
-                    th:selected="${doct.docId == patient.doc.docId}"></option>
+            <option th:each="doctor:${doctors}" th:value="${doctor.docId}"
+                    th:text="'Dr. ' + ${doctor.firstName} + ' ' + ${doctor.lastName}"
+                    th:selected="${doctor.docId == patient.doc.docId}"></option>
         </select>
     </div>
     <button id="toggleBtn"><i class="bi-pencil"></i> Enable Edit</button>
@@ -44,9 +44,6 @@
             th:data-confirm-delete="|Are you sure you want to delete this patient, ${patient.firstName} ${patient.lastName}?|"
             onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
     >Delete Patient</button>
-<!--            th:href="@{/dashboard/delete/{id} (id=${patient.id})}" -->
-<!--            th:action="@{/dashboard/delete/{id} (id=${patient.id})}" -->
-
 </form>
 
 <hr>
