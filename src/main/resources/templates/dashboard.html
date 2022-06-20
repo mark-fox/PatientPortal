@@ -3,42 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-<!--    <div th:replace="fragments/stylesheets"></div>-->
     <div th:replace="fragments/stylesheets :: styles"></div>
 </head>
 <body>
 <header th:insert="fragments/navbar :: navigation"></header>
-<!--    <div th:replace="fragments/navbar"></div>-->
-  <h1>Patients</h1>
 
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>tbd</th>
-            <th>Doc</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each = "patient: ${patients}">
-            <td><a th:text="${patient.id}" th:href="@{/dashboard/{id} (id=${patient.id})}">
-                </a></td>
-            <td th:text = "${patient.firstName}"></td>
-            <td th:text = "${patient.lastName}"></td>
-<!--            <td th:text = "${patient.doctor}"></td>-->
-            <td>placeholder</td>
-            <td><a th:text="${patient?.doc?.firstName} + ' ' + ${patient?.doc?.lastName}"
-                   th:href="@{/doctors/{docId} (docId=${patient?.doc?.docId})}"></a></td>
-        </tr>
-        </tbody>
-    </table>
+<div class="main">
+    <div class="container">
+        <div class="box border mt-5 p-5">
 
-<form th:action="@{/dashboard/newpatient}">
-    <button><i class="bi-person-plus"></i> Add Patient</button>
-</form>
-<!--    <div th:replace="fragments/bootstrapscripts"></div>- -->
+            <h1>Patients</h1>
+            <fieldset>
+                <table class="table thead-light table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">DOB</th>
+                        <th scope="col">Last Visit</th>
+                        <th scope="col">Something</th>
+                        <th scope="col">Something</th>
+                        <th scope="col">Darkside</th>
+                        <th scope="col">Something</th>
+                        <th scope="col">Doctor</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="patient: ${patients}">
+                        <td><a th:text="${patient.id}" th:href="@{/dashboard/{id} (id=${patient.id})}">
+                        </a></td>
+                        <td th:text="${patient.firstName}"></td>
+                        <td th:text="${patient.lastName}"></td>
+                        <td>placeholder</td>
+                        <td>placeholder</td>
+                        <td>placeholder</td>
+                        <td>placeholder</td>
+                        <td>placeholder</td>
+                        <td>placeholder</td>
+                        <td><a th:text="${patient?.doc?.firstName} + ' ' + ${patient?.doc?.lastName}"
+                               th:href="@{/doctors/{docId} (docId=${patient?.doc?.docId})}"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <form th:action="@{/dashboard/newpatient}">
+                    <button class="btn btn-primary"><i class="bi-person-plus"></i> Add Patient</button>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
 <div th:replace="fragments/bootstrapscripts :: scripts"></div>
 </body>
 </html>
