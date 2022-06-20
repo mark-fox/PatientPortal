@@ -14,74 +14,117 @@
         <div class="box border mt-5 p-5">
 
 
-<h1 th:text="${patient.firstName} + ' ' + ${patient.lastName} + '\'s Info'">Patient Info</h1>
-<form th:action="@{/dashboard/{id} (id=${patient.id})}" th:object="${patient}" method="post" id="patientForm">
-    <div>
-        <label>First Name:</label>
-        <input type="text" th:field="*{firstName}"/>
+            <h1 th:text="${patient.firstName} + ' ' + ${patient.lastName} + '\'s Info'">Patient Info</h1>
+            <fieldset>
+                <form th:action="@{/dashboard/{id} (id=${patient.id})}" th:object="${patient}" method="post"
+                      id="patientForm">
+                    <fieldset disabled>
+                        <div class="row">
+                            <div class="col">
+                                <label>First Name:</label>
+                                <input class="form-control" id="firstNameInput" type="text" th:field="*{firstName}"/>
+                            </div>
+                            <div class="col">
+                                <label>Last Name:</label>
+                                <input class="form-control" type="text" th:field="*{lastName}"/>
+                            </div>
+                            <div class="col-3">
+                                <label>Date of Birth:</label>
+                                <input class="form-control" type="date"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Something:</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                            <div class="col">
+                                <label>Something:</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                            <div class="col">
+                                <label>Something:</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                            <div class="col">
+                                <label>Darkside:</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Something:</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                            <div class="col-4">
+                                <label>Doc:</label>
+                                <select class="form-control" name="doctorId" th:field="*{doc.docId}">
+                                    <option th:each="doctor:${doctors}" th:value="${doctor.docId}"
+                                            th:text="'Dr. ' + ${doctor.firstName} + ' ' + ${doctor.lastName}"
+                                            th:selected="${doctor.docId == patient.doc.docId}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br>
+                    <div>
+                        <button class="btn btn-danger float-end"
+                                type="submit"
+                                name="delPatient"
+                                id="patientDeleteBtn"
+                                th:data-confirm-delete="|Are you sure you want to delete this patient, ${patient.firstName} ${patient.lastName}?|"
+                                onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false" disabled>
+                            Delete Patient</button>
+                        <button class="btn btn-success float-end" id="patientUpdateBtn" disabled>Update Patient</button>
+                        <button class="btn btn-secondary float-end" id="toggleBtn" value="true"><i
+                                class="bi-pencil"></i> Enable Edit
+                        </button>
+                    </div>
+                </form>
+            </fieldset>
+            <hr>
+
+            <h3>Visit Notes</h3>
+            <div>
+                <form th:action="@{/newnotes/{id} (id=${patient.id})}">
+                    <button class="btn btn-primary">Add Notes</button>
+                </form>
+            </div>
+
+            <div th:each="visit:${visits}">
+                <fieldset disabled>
+                    <div class="row">
+                        <div class="col">
+                            <label>Reason for Visit:</label>
+                            <input class="form-control" type="text" th:value="${visit.visitReason}">
+                        </div>
+                        <div class="col">
+                            <label>Date of Visit</label>
+                            <input class="form-control" type="date" th:value="${visit.visitDate}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label>What was discussed during this visit:</label>
+                            <br>
+                            <textarea class="form-control" th:text="${visit.description}"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row">
+                    <form th:action="@{/deletenote/{id} (id=${visit.id})}" method="post">
+                        <button class="btn btn-danger" type="submit"><i class="bi-trash"></i></button>
+                    </form>
+                </div>
+                <br>
+            </div>
+
+            <div th:replace="fragments/bootstrapscripts :: scripts"></div>
+            <script th:src="@{/js/viewpatientjs.js}"></script>
+
+
+        </div>
     </div>
-    <div>
-        <label>Last Name:</label>
-        <input type="text" th:field="*{lastName}"/>
-    </div>
-<!--    <div>-->
-<!--        <label>Doctor:</label>-->
-<!--        <input type="text" th:field="*{doctor}"/>-->
-<!--    </div>-->
-    <div>
-        <label>Doc:</label>
-        <select name="doctorId" th:field="*{doc.docId}">
-            <option th:each="doctor:${doctors}" th:value="${doctor.docId}"
-                    th:text="'Dr. ' + ${doctor.firstName} + ' ' + ${doctor.lastName}"
-                    th:selected="${doctor.docId == patient.doc.docId}"></option>
-        </select>
-    </div>
-    <button id="toggleBtn"><i class="bi-pencil"></i> Enable Edit</button>
-    <button id="patientUpdateBtn">Update Patient</button>
-    <button type="submit"
-            name="delPatient"
-            id="patientDeleteBtn"
-            th:data-confirm-delete="|Are you sure you want to delete this patient, ${patient.firstName} ${patient.lastName}?|"
-            onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
-    >Delete Patient</button>
-</form>
-
-<hr>
-
-<h3>Visit Notes</h3>
-<div>
-    <form th:action="@{/newnotes/{id} (id=${patient.id})}">
-        <button>Add Notes</button>
-    </form>
-</div>
-
-<div th:each="visit:${visits}">
-    <div>
-        <label>Reason for Visit:</label>
-        <input type="text" th:value="${visit.visitReason}">
-    </div>
-    <div>
-        <label>Date of Visit</label>
-        <input type="text" th:value="${visit.visitDate}">
-    </div>
-    <div>
-        <label>What was discussed during this visit:</label>
-        <br>
-        <textarea th:text="${visit.description}"></textarea>
-
-        <form th:action="@{/deletenote/{id} (id=${visit.id})}" method="post">
-            <button type="submit"><i class="bi-trash"></i></button>
-        </form>
-
-    </div>
-</div>
-
-<div th:replace="fragments/bootstrapscripts :: scripts"></div>
-<script th:src="@{/js/viewpatientjs.js}"></script>
-
-
-</div>
-</div>
 </div>
 </body>
 </html>
