@@ -8,21 +8,33 @@
 <body>
 <header th:insert="fragments/navbar :: navigation"></header>
 
-<div>
-    <form th:action="@{/doctors/newdoctor}" th:object="${doctor}" method="post">
-        <div>
-            <label>First Name:</label>
-            <input type="text" th:field="*{firstName}" placeholder="Enter the doctor's first name"/>
-        </div>
-        <div>
-            <label>Last Name:</label>
-            <input type="text" th:field="*{lastName}" placeholder="Enter the doctor's last name"/>
-        </div>
+<div class="main">
+    <div class="container">
+        <div class="box border mt-5 p-5">
 
-        <button>Add Doctor</button>
-    </form>
+            <h1>Add New Doctor</h1>
+            <fieldset>
+                <form th:action="@{/doctors/newdoctor}" th:object="${doctor}" method="post">
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">First Name:</label>
+                        <div class="col-4">
+                        <input class="form-control" type="text" th:field="*{firstName}" placeholder="Enter the doctor's first name"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Last Name:</label>
+                        <div class="col-4">
+                        <input class="form-control" type="text" th:field="*{lastName}" placeholder="Enter the doctor's last name"/>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary">Add Doctor</button>
+                </form>
+            </fieldset>
+
+        </div>
+    </div>
 </div>
-
 <div th:replace="fragments/bootstrapscripts :: scripts"></div>
 </body>
 </html>

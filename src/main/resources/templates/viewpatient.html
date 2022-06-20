@@ -57,8 +57,8 @@
                                 <input class="form-control" type="text"/>
                             </div>
                             <div class="col-4">
-                                <label>Doc:</label>
-                                <select class="form-control" name="doctorId" th:field="*{doc.docId}">
+                                <label>Doctor:</label>
+                                <select class="form-select" name="doctorId" th:field="*{doc.docId}">
                                     <option th:each="doctor:${doctors}" th:value="${doctor.docId}"
                                             th:text="'Dr. ' + ${doctor.firstName} + ' ' + ${doctor.lastName}"
                                             th:selected="${doctor.docId == patient.doc.docId}"></option>
@@ -74,7 +74,8 @@
                                 id="patientDeleteBtn"
                                 th:data-confirm-delete="|Are you sure you want to delete this patient, ${patient.firstName} ${patient.lastName}?|"
                                 onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false" disabled>
-                            Delete Patient</button>
+                            Delete Patient
+                        </button>
                         <button class="btn btn-success float-end" id="patientUpdateBtn" disabled>Update Patient</button>
                         <button class="btn btn-secondary float-end" id="toggleBtn" value="true"><i
                                 class="bi-pencil"></i> Enable Edit
@@ -98,7 +99,7 @@
                             <label>Reason for Visit:</label>
                             <input class="form-control" type="text" th:value="${visit.visitReason}">
                         </div>
-                        <div class="col">
+                        <div class="col-3">
                             <label>Date of Visit</label>
                             <input class="form-control" type="date" th:value="${visit.visitDate}">
                         </div>

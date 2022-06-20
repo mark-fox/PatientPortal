@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Add New Visit Notes</title>
-  <div th:replace="fragments/stylesheets :: styles"></div>
+    <meta charset="UTF-8">
+    <title>Add New Visit Notes</title>
+    <div th:replace="fragments/stylesheets :: styles"></div>
 </head>
 <body>
 <header th:insert="fragments/navbar :: navigation"></header>
 
-<h1 th:text="'Adding New Visit Notes for ' + ${patient.firstName} + ' ' + ${patient.lastName}">Adding New Visit Notes</h1>
+<div class="main">
+    <div class="container">
+        <div class="box border mt-5 p-5">
 
-<div>
-  <form th:action="@{/newnotes/{id} (id=${patient.id})}" th:object="${visit}" method="post">
-    <div>
-    <label>Reason for Visit:</label>
-      <input type="text" th:field="*{visitReason}" placeholder="Reason...">
+            <fieldset>
+                <legend th:text="'Adding New Visit Notes for ' + ${patient.firstName} + ' ' + ${patient.lastName}">
+                    Adding New Visit Notes
+                </legend>
+                <form th:action="@{/newnotes/{id} (id=${patient.id})}" th:object="${visit}" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <label>Reason for Visit:</label>
+                            <input class="form-control" type="text" th:field="*{visitReason}" placeholder="Reason...">
+                        </div>
+                        <div class="col-3">
+                            <label>Date of Visit:</label>
+                            <input class="form-control" type="date" th:field="*{visitDate}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label>What was discussed during this visit:</label>
+                            <br>
+                            <textarea class="form-control" th:field="*{description}"
+                                      placeholder="Enter notes about the visit here"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary">Add Visit Notes</button>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
     </div>
-    <div>
-      <label>Date of Visit:</label>
-      <input type="date" th:field="*{visitDate}">
-    </div>
-    <div>
-      <label>What was discussed during this visit:</label>
-      <br>
-      <textarea th:field="*{description}" placeholder="Enter notes about the visit here"></textarea>
-    </div>
-    <div>
-      <button>Add Visit Notes</button>
-    </div>
-  </form>
 </div>
-
 <div th:replace="fragments/bootstrapscripts :: scripts"></div>
 </body>
 </html>
