@@ -21,10 +21,10 @@ import java.util.List;
 
 @Controller
 public class PatientController {
-    private PatientService patientService;
+    private final PatientService patientService;
     @Autowired
     private DoctorService doctorService;
-    private VisitNotesService visitNotesService;
+    private final VisitNotesService visitNotesService;
 
     public PatientController(PatientService patientService, VisitNotesService visitNotesService) {
         this.patientService = patientService;
