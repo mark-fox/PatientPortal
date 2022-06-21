@@ -32,10 +32,10 @@ public class PatientController {
     }
 
 
-    @GetMapping("/login")
-    public String viewLoginPage() {
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String viewLoginPage() {
+//        return "login";
+//    }
 
     @GetMapping("/dashboard")
     public String viewAllPatients(Model model) {

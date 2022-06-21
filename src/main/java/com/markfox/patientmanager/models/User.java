@@ -1,27 +1,40 @@
 package com.markfox.patientmanager.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "usersTbl")
+@Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @Column (name="email", nullable=false, unique = true)
     private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    public User() {
+    private boolean active = true;
+    private String roles = "USER";
 
+//    public User() {
+//
+//    }
+//
+//    public User(String email, String password, boolean active, String roles) {
+//        this.email = email;
+//        this.password = password;
+//        this.active = active;
+//        this.roles = roles;
+//    }
+
+    public Long getId() {
+        return id;
     }
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -38,5 +51,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }
