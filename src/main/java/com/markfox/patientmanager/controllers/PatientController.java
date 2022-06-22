@@ -97,9 +97,14 @@ public class PatientController {
         Patient savedPatient = patientService.getPatientById(id);
         savedPatient.setFirstName(patient.getFirstName());
         savedPatient.setLastName(patient.getLastName());
-//        savedPatient.setDoctor(patient.getDoctor());
+        savedPatient.setDateOfBirth(patient.getDateOfBirth());
+        savedPatient.setGender(patient.getGender());
+        savedPatient.setPhoneNumber(patient.getPhoneNumber());
+        savedPatient.setEmailAddress(patient.getEmailAddress());
+        savedPatient.setLastVisitDate(patient.getLastVisitDate());
+        savedPatient.setRaceEthnicity(patient.getRaceEthnicity());
         savedPatient.setDoc(doctorService.getDoctorById(patient.getDoc().getDocId()));
-        System.out.println("update route reached");
+//        System.out.println("update route reached");
         patientService.updatePatient(savedPatient);
         return "redirect:/dashboard";
     }

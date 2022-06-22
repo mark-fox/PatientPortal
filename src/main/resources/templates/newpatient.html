@@ -28,29 +28,35 @@
                         </div>
                         <div class="col-3">
                             <label>Date of Birth:</label>
-                            <input class="form-control" type="date" th:attr="max=${currDate}, min=${limitDate}"/>
+                            <input class="form-control" type="date" th:field="*{dateOfBirth}" th:attr="max=${currDate}, min=${limitDate}"/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label>Phone Number:</label>
-                            <input class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+                            <input class="form-control" type="tel" th:field="*{phoneNumber}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
                         </div>
                         <div class="col">
                             <label>Gender:</label>
-                            <select class="form-select">
-                                <option>Male</option>
-                                <option>Female</option>
+                            <select class="form-select" th:field="*{gender}">
+                                <option th:each="gender:${patient.getGenderList()}"
+                                        th:value="${gender}"
+                                        th:text="${gender}"></option>
+<!--                                <option value="Male">Male</option>-->
+<!--                                <option value="Female">Female</option>-->
                             </select>
                         </div>
                         <div class="col">
                             <label>Race/Ethnicity:</label>
-                            <select class="form-select">
-                                <option>White</option>
-                                <option>Black or African American</option>
-                                <option>American Indian or Alaska Native</option>
-                                <option>Asian</option>
-                                <option>Native Hawaiian or Other Pacific Islander</option>
+                            <select class="form-select" th:field="*{raceEthnicity}">
+                                <option th:each="race:${patient.getEthnicityList()}"
+                                        th:value="${race}"
+                                        th:text="${race}"></option>
+<!--                                <option value="White">White</option>-->
+<!--                                <option value="Black or African American">Black or African American</option>-->
+<!--                                <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>-->
+<!--                                <option value="Asian">Asian</option>-->
+<!--                                <option value="Native Hawaiian or Other Pacific Islander">Native Hawaiian or Other Pacific Islander</option>-->
                             </select>
                         </div>
                         <div class="col">
@@ -63,7 +69,7 @@
                     <div class="row">
                         <div class="col">
                             <label>Email Address:</label>
-                            <input class="form-control" type="email"/>
+                            <input class="form-control" type="email" th:field="*{emailAddress}"/>
                         </div>
                         <div class="col-4">
                             <label>Doctor</label>

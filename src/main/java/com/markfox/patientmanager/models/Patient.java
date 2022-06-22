@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -20,25 +22,25 @@ public class Patient {
     @Column(name = "lastname", nullable = false)
     private String lastName;
 
-//    @Column(name = "dob")
-//    @DateTimeFormat(pattern = "MM/dd/yyyy")
-//    private LocalDate dateOfBirth;
+    @Column(name = "dob")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfBirth;
 
-//    @Column(name = "gender")
-//    private String gender;
-//
-//    @Column(name = "phone")
-//    private String phoneNumber;
-//
-//    @Column(name = "email")
-//    private String emailAddress;
+    @Column(name = "gender")
+    private String gender;
 
-//    @Column(name = "lastvisit")
-//    @DateTimeFormat(pattern = "MM/dd/yyyy")
-//    private LocalDate lastVisitDate;
+    @Column(name = "phone")
+    private String phoneNumber;
 
-//    @Column(name = "ethnicity")
-//    private String raceEthnicity;
+    @Column(name = "email")
+    private String emailAddress;
+
+    @Column(name = "lastvisit")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate lastVisitDate;
+
+    @Column(name = "ethnicity")
+    private String raceEthnicity;
 
     @ManyToOne(fetch=FetchType.LAZY, optional = true
 //            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
@@ -63,6 +65,18 @@ public class Patient {
     }
 
 
+
+    public List<String> getEthnicityList() {
+        return Arrays.asList("White",
+                "Black or African American",
+                "American Indian or Alaska Native",
+                "Asian",
+                "Native Hawaiian or Other Pacific Islander");
+    }
+
+    public List<String> getGenderList() {
+        return Arrays.asList("Male", "Female");
+    }
 
     public Long getId() {
         return id;
@@ -111,5 +125,53 @@ public class Patient {
 
     public void setPatientVisits(List<VisitNotes> patientVisits) {
         this.patientVisits = patientVisits;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public LocalDate getLastVisitDate() {
+        return lastVisitDate;
+    }
+
+    public void setLastVisitDate(LocalDate lastVisitDate) {
+        this.lastVisitDate = lastVisitDate;
+    }
+
+    public String getRaceEthnicity() {
+        return raceEthnicity;
+    }
+
+    public void setRaceEthnicity(String raceEthnicity) {
+        this.raceEthnicity = raceEthnicity;
     }
 }
