@@ -19,16 +19,16 @@
                         <div class="col">
                             <label>First Name:</label>
                             <input class="form-control" type="text" th:field="*{firstName}"
-                                   placeholder="Enter the patient's first name"/>
+                                   placeholder="Enter the patient's first name" required/>
                         </div>
                         <div class="col">
                             <label>Last Name:</label>
                             <input class="form-control" type="text" th:field="*{lastName}"
-                                   placeholder="Enter the patient's last name"/>
+                                   placeholder="Enter the patient's last name" required/>
                         </div>
                         <div class="col-3">
                             <label>Date of Birth:</label>
-                            <input class="form-control" type="date"/>
+                            <input class="form-control" type="date" th:attr="max=${currDate}, min=${limitDate}"/>
                         </div>
                     </div>
                     <div class="row">

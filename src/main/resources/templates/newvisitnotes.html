@@ -21,11 +21,11 @@
                     <div class="row">
                         <div class="col">
                             <label>Reason for Visit:</label>
-                            <input class="form-control" type="text" th:field="*{visitReason}" placeholder="Reason...">
+                            <input class="form-control" type="text" th:field="*{visitReason}" placeholder="Patient's visit was regarding..." required>
                         </div>
                         <div class="col-3">
                             <label>Date of Visit:</label>
-                            <input class="form-control" type="date" th:field="*{visitDate}">
+                            <input class="form-control" type="date" th:attr="max=${currDate}" th:field="*{visitDate}" required>
                         </div>
                     </div>
                     <div class="row">

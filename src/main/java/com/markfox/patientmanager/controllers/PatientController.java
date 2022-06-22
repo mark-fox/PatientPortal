@@ -57,6 +57,8 @@ public class PatientController {
         Patient patient = new Patient();
         model.addAttribute("patient", patient);
         model.addAttribute("doctors", doctorService.getAllDoctors());
+        model.addAttribute("currDate", LocalDate.now());
+        model.addAttribute("limitDate", LocalDate.now().minusYears(150));
 //        System.out.println(doctorService.getAllDoctors());
         return "newpatient";
     }

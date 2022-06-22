@@ -1,8 +1,10 @@
 package com.markfox.patientmanager.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,8 +20,9 @@ public class Patient {
     @Column(name = "lastname", nullable = false)
     private String lastName;
 
-//    @Column(name = "doctor")
-//    private String doctor;
+//    @Column(name = "dob")
+//    @DateTimeFormat(pattern = "MM/dd/yyyy")
+//    private LocalDate dateOfBirth;
 
     @ManyToOne(fetch=FetchType.LAZY, optional = true
 //            cascade = {CascadeType.PERSIST, CascadeType.MERGE,

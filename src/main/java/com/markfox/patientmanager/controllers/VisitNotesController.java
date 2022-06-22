@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
+
 @Controller
 public class VisitNotesController {
     private VisitNotesService visitNotesService;
@@ -25,6 +27,7 @@ public class VisitNotesController {
         VisitNotes visitNotes = new VisitNotes();
         model.addAttribute("visit", visitNotes);
         model.addAttribute("patient", patientService.getPatientById(id));
+        model.addAttribute("currDate", LocalDate.now());
         return "newvisitnotes";
     }
 
