@@ -24,6 +24,22 @@ public class Patient {
 //    @DateTimeFormat(pattern = "MM/dd/yyyy")
 //    private LocalDate dateOfBirth;
 
+//    @Column(name = "gender")
+//    private String gender;
+//
+//    @Column(name = "phone")
+//    private String phoneNumber;
+//
+//    @Column(name = "email")
+//    private String emailAddress;
+
+//    @Column(name = "lastvisit")
+//    @DateTimeFormat(pattern = "MM/dd/yyyy")
+//    private LocalDate lastVisitDate;
+
+//    @Column(name = "ethnicity")
+//    private String raceEthnicity;
+
     @ManyToOne(fetch=FetchType.LAZY, optional = true
 //            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
 //            CascadeType.DETACH, CascadeType.REFRESH}

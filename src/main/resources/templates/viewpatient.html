@@ -31,31 +31,40 @@
                             </div>
                             <div class="col-3">
                                 <label>Date of Birth:</label>
-                                <input class="form-control" type="date"/>
+                                <input class="form-control" type="date" th:attr="max=${currDate}, min=${limitDate}"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label>Something:</label>
-                                <input class="form-control" type="text"/>
+                                <label>Phone Number:</label>
+                                <input class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
                             </div>
                             <div class="col">
-                                <label>Something:</label>
-                                <input class="form-control" type="text"/>
+                                <label>Gender:</label>
+                                <select class="form-select">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
                             </div>
                             <div class="col">
-                                <label>Something:</label>
-                                <input class="form-control" type="text"/>
+                                <label>Race/Ethnicity:</label>
+                                <select class="form-select">
+                                    <option>White</option>
+                                    <option>Black or African American</option>
+                                    <option>American Indian or Alaska Native</option>
+                                    <option>Asian</option>
+                                    <option>Native Hawaiian or Other Pacific Islander</option>
+                                </select>
                             </div>
                             <div class="col">
-                                <label>Darkside:</label>
-                                <input class="form-control" type="text"/>
+                                <label>Date of Last Visit:</label>
+                                <input class="form-control" type="date"th:attr="max=${currDate}"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label>Something:</label>
-                                <input class="form-control" type="text"/>
+                                <label>Email Address:</label>
+                                <input class="form-control" type="email"/>
                             </div>
                             <div class="col-4">
                                 <label>Doctor:</label>

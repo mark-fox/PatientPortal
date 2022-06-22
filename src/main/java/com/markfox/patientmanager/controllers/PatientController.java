@@ -88,6 +88,8 @@ public class PatientController {
         model.addAttribute("patient", patientService.getPatientById(id));
         model.addAttribute("doctors", doctorService.getAllDoctors());
         model.addAttribute("visits", patientService.getAllVisitNotes(id));
+        model.addAttribute("currDate", LocalDate.now());
+        model.addAttribute("limitDate", LocalDate.now().minusYears(150));
         return "viewpatient";
     }
     @PostMapping("/dashboard/{id}")

@@ -22,11 +22,9 @@
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">DOB</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Race/Ethnicity</th>
                         <th scope="col">Last Visit</th>
-                        <th scope="col">Something</th>
-                        <th scope="col">Something</th>
-                        <th scope="col">Darkside</th>
-                        <th scope="col">Something</th>
                         <th scope="col">Doctor</th>
                     </tr>
                     </thead>
@@ -36,12 +34,10 @@
                         </a></td>
                         <td th:text="${patient.firstName}"></td>
                         <td th:text="${patient.lastName}"></td>
-                        <td>placeholder</td>
-                        <td>placeholder</td>
-                        <td>placeholder</td>
-                        <td>placeholder</td>
-                        <td>placeholder</td>
-                        <td>placeholder</td>
+                        <td>birthdate</td>
+                        <td>gender</td>
+                        <td>ethnicity</td>
+                        <td>last visit</td>
                         <td><a th:text="${patient?.doc?.firstName} + ' ' + ${patient?.doc?.lastName}"
                                th:href="@{/doctors/{docId} (docId=${patient?.doc?.docId})}"></a></td>
                     </tr>
