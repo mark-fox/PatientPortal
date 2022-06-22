@@ -19,7 +19,7 @@
             <fieldset>
                 <form th:action="@{/dashboard/{id} (id=${patient.id})}" th:object="${patient}" method="post"
                       id="patientForm">
-                    <fieldset disabled>
+                    <fieldset id="patientFormFieldset" disabled>
                         <div class="row">
                             <div class="col">
                                 <label>First Name:</label>
@@ -84,6 +84,7 @@
                     </div>
                 </form>
             </fieldset>
+
             <hr>
 
             <h3>Visit Notes</h3>
@@ -109,7 +110,7 @@
                         <div class="col">
                             <label>What was discussed during this visit:</label>
                             <br>
-                            <textarea class="form-control" th:text="${visit.description}"></textarea>
+                            <textarea class="form-control" th:text="${visit.description}" rows="7"></textarea>
                         </div>
                     </div>
                 </fieldset>

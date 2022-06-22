@@ -1,16 +1,15 @@
-/*#navbarDiv {*/
-/*    top: 0;*/
-/*    overflow: hidden;*/
-/*}*/
+
 header {
-    /*position: absolute;*/
     position: sticky;
     top: 0;
-    /*z-index: 999;*/
+}
+
+textarea {
+    resize: none;
 }
 
 /*Bootstrap Icons:*/
-.bi {
+.bi, .fa {
     width: 1em;
     height: 1em;
 }
