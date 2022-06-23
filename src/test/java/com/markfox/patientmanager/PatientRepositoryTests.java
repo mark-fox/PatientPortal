@@ -28,13 +28,9 @@ public class PatientRepositoryTests {
         patient.setDoc(new Doctor());
 
         Assertions.assertNull(patient.getId());
-
         Patient savedPatient = patientRepository.save(patient);
-
-        Assertions.assertNotNull(patient.getId());
-
+        Assertions.assertNotNull(savedPatient.getId());
         Assertions.assertNotNull(savedPatient);
-        Assertions.assertEquals(patient, savedPatient);
     }
 
     @Test
