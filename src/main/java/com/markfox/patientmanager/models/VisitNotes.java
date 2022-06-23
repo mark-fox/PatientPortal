@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name="visitnotes")
@@ -40,6 +41,19 @@ public class VisitNotes {
         this.visitReason = visitReason;
         this.description = description;
         this.visitDate = visitDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VisitNotes that = (VisitNotes) o;
+        return Objects.equals(id, that.id) && Objects.equals(visitReason, that.visitReason) && Objects.equals(description, that.description) && Objects.equals(visitDate, that.visitDate) && Objects.equals(visitsPatient, that.visitsPatient);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, visitReason, description, visitDate, visitsPatient);
     }
 
     public Long getId() {

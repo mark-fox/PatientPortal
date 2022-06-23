@@ -3,6 +3,7 @@ package com.markfox.patientmanager.models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="doctors")
@@ -28,6 +29,19 @@ public class Doctor {
         this.firstName = firstName;
         this.lastName = lastName;
 //        this.docsPatients = new ArrayList<>();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Doctor doctor = (Doctor) o;
+        return Objects.equals(docId, doctor.docId) && Objects.equals(firstName, doctor.firstName) && Objects.equals(lastName, doctor.lastName) && Objects.equals(docsPatients, doctor.docsPatients);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(docId, firstName, lastName, docsPatients);
     }
 
     public Long getDocId() {

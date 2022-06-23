@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="patients")
@@ -76,6 +77,20 @@ public class Patient {
 
     public List<String> getGenderList() {
         return Arrays.asList("Male", "Female");
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patient patient = (Patient) o;
+        return Objects.equals(id, patient.id) && Objects.equals(firstName, patient.firstName) && Objects.equals(lastName, patient.lastName) && Objects.equals(dateOfBirth, patient.dateOfBirth) && Objects.equals(gender, patient.gender) && Objects.equals(phoneNumber, patient.phoneNumber) && Objects.equals(emailAddress, patient.emailAddress) && Objects.equals(lastVisitDate, patient.lastVisitDate) && Objects.equals(raceEthnicity, patient.raceEthnicity) && Objects.equals(doc, patient.doc) && Objects.equals(patientVisits, patient.patientVisits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, dateOfBirth, gender, phoneNumber, emailAddress, lastVisitDate, raceEthnicity, doc, patientVisits);
     }
 
     public Long getId() {

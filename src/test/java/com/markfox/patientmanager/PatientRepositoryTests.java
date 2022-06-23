@@ -3,7 +3,9 @@ package com.markfox.patientmanager;
 import com.markfox.patientmanager.models.Doctor;
 import com.markfox.patientmanager.models.Patient;
 import com.markfox.patientmanager.repositories.PatientRepository;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -50,6 +52,8 @@ public class PatientRepositoryTests {
         Assertions.assertNotEquals(savedPatient.getLastName().equals(updatedPatient.getLastName()), !savedPatient.getLastName().equals(updatedPatient.getLastName()));
 
         Assertions.assertEquals(updatedPatient.getId(), savedPatient.getId());
+        Assertions.assertEquals(updatedPatient.getId(), savedPatient.getId());
+
     }
 
     @Test
