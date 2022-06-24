@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Occurred</title>
+    <div th:replace="fragments/stylesheets :: styles"></div>
+</head>
+<body>
+<header th:insert="fragments/navbar :: navigation"></header>
+
+<h1>An error has occurred. We are looking into it.</h1>
+
+<div th:replace="fragments/bootstrapscripts :: scripts"></div>
+</body>
+</html>
