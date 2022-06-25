@@ -37,11 +37,6 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Doctor updateDoctor(Doctor doctor) {
-        return doctorRepository.save(doctor);
-    }
-
-    @Override
     public void deleteDoctorById(Long id) {
         doctorRepository.deleteById(id);
     }

@@ -10,20 +10,10 @@ import java.util.List;
 
 @Service
 public class VisitNotesServiceImpl implements VisitNotesService {
-    private VisitNotesRepository visitNotesRepository;
+    private final VisitNotesRepository visitNotesRepository;
 
     public VisitNotesServiceImpl(VisitNotesRepository repo) {
         this.visitNotesRepository = repo;
-    }
-
-    @Override
-    public List<VisitNotes> getAllVisitNotes() {
-        return visitNotesRepository.findAll();
-    }
-
-    @Override
-    public VisitNotes getVisitNotesById(Long id) {
-        return visitNotesRepository.findById(id).get();
     }
 
     @Override
@@ -33,7 +23,6 @@ public class VisitNotesServiceImpl implements VisitNotesService {
 
     @Override
     public void deleteVisitNoteById(Long id) {
-        System.out.println("visit note is being deleted");
         visitNotesRepository.deleteById(id);
     }
 }

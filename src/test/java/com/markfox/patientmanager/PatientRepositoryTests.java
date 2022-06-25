@@ -2,15 +2,15 @@ package com.markfox.patientmanager;
 
 import com.markfox.patientmanager.models.Doctor;
 import com.markfox.patientmanager.models.Patient;
+import com.markfox.patientmanager.repositories.DoctorRepository;
 import com.markfox.patientmanager.repositories.PatientRepository;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
@@ -20,7 +20,8 @@ public class PatientRepositoryTests {
 
     @Autowired
     private PatientRepository patientRepository;
-
+    @Autowired
+    private DoctorRepository doctorRepository;
 
     @Test
     public void savePatientTest() {
@@ -53,7 +54,6 @@ public class PatientRepositoryTests {
 
         Assertions.assertEquals(updatedPatient.getId(), savedPatient.getId());
         Assertions.assertEquals(updatedPatient.getId(), savedPatient.getId());
-
     }
 
     @Test
@@ -68,5 +68,29 @@ public class PatientRepositoryTests {
         patientRepository.deleteById(savedPatient.getId());
 
         Assertions.assertEquals(Optional.empty(), patientRepository.findById(savedPatient.getId()));
+    }
+
+    @Test
+    public void updatePatientDocByDocIdTest() {
+        Doctor doctor = new Doctor();
+        doctor.setFirstName("Bob");
+        doctor.setLastName("Barker");
+        Doctor savedDoctor = doctorRepository.save(doctor);
+        Long docId = savedDoctor.getDocId();
+
+        Patient patient = new Patient();
+        patient.setFirstName("Matt");
+        patient.setLastName("Damon");
+        patient.setDoc(savedDoctor);
+
+        Patient savedPatient = patientRepository.save(patient);
+        Assertions.assertNotNull(savedPatient.getDoc());
+
+        Optional<List<Patient>> patients = Optional.ofNullable(doctorRepository.findById(docId).get().getDocsPatients());
+        Assertions.assertNotNull(patients);
+        patientRepository.updatePatientDocByDocId(docId);
+
+        Optional<List<Patient>> patients2 = Optional.ofNullable(doctorRepository.findById(docId).get().getDocsPatients());
+        Assertions.assertEquals(Optional.empty(), patients2);
     }
 }

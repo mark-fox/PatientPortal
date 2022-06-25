@@ -30,10 +30,6 @@ public class PatientServiceImpl implements PatientService {
         return patientRepository.findById(id).get();
     }
 
-    @Override
-    public Patient getPatientByName(String firstname, String lastname) {
-        return null;
-    }
 
     @Override
     public Patient updatePatient(Patient patient) {
@@ -42,7 +38,6 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public void deletePatientById(Long id) {
-        System.out.println("say goodbye to: " + id);
         patientRepository.deleteById(id);
     }
 
