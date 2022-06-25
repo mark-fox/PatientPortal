@@ -14,8 +14,8 @@ import java.time.LocalDate;
 
 @Controller
 public class VisitNotesController {
-    private VisitNotesService visitNotesService;
-    private PatientService patientService;
+    private final VisitNotesService visitNotesService;
+    private final PatientService patientService;
 
     public VisitNotesController(VisitNotesService visitNotesService, PatientService patientService) {
         this.visitNotesService = visitNotesService;
@@ -35,8 +35,6 @@ public class VisitNotesController {
     public String addNewVisitNotes(@PathVariable Long id,
                                    @ModelAttribute("visit") VisitNotes visitNotes) {
         visitNotes.setVisitsPatient(patientService.getPatientById(id));
-//        System.out.println(visitNotes.getVisitDate());
-//        System.out.println(visitNotes.getVisitDate().getClass().getName());
         visitNotes.setVisitDate(visitNotes.getVisitDate());
         visitNotesService.addVisitNotes(visitNotes);
         return "redirect:/dashboard/{id}";
