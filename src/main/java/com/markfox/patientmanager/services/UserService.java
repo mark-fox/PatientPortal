@@ -3,9 +3,7 @@ package com.markfox.patientmanager.services;
 import com.markfox.patientmanager.models.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import java.util.Optional;
-
-
+// User DAO class
 public interface UserService extends UserDetailsService {
     User addNewUser(User user);
 }

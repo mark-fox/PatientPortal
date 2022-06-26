@@ -1,7 +1,6 @@
 package com.markfox.patientmanager.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,19 +17,19 @@ public class Doctor {
     @Column(name="lastname", nullable = false)
     private String lastName;
 
-    @OneToMany(targetEntity = Patient.class, mappedBy = "doc")  // mappedBy the Doctor attribute in Patient class
+    // mappedBy the Doctor attribute in Patient class
+    @OneToMany(targetEntity = Patient.class, mappedBy = "doc")
     private List<Patient> docsPatients;
 
+    // Constructors
     public Doctor() {
-
     }
-
-    public Doctor(String firstName, String lastName) { //, List<Patient> docsPatients) {
+    public Doctor(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-//        this.docsPatients = new ArrayList<>();
     }
 
+    // Overridden methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,6 +43,7 @@ public class Doctor {
         return Objects.hash(docId, firstName, lastName, docsPatients);
     }
 
+    // Getters and Setters
     public Long getDocId() {
         return docId;
     }

@@ -10,12 +10,14 @@ import java.util.List;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
-    private DoctorRepository doctorRepository;
+    private final DoctorRepository doctorRepository;
 
+    // Constructor for dependency injection of Repository
     public DoctorServiceImpl(DoctorRepository doctorRepository) {
         this.doctorRepository = doctorRepository;
     }
 
+    // Implemented methods
     @Override
     public List<Doctor> getAllDoctors() {
         return doctorRepository.findAll();

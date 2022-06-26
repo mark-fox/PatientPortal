@@ -4,22 +4,20 @@ import com.markfox.patientmanager.models.Patient;
 import com.markfox.patientmanager.models.VisitNotes;
 import com.markfox.patientmanager.repositories.PatientRepository;
 import com.markfox.patientmanager.services.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class PatientServiceImpl implements PatientService {
 
-//    @Autowired
-    private PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
 
+    // Constructor for dependency injection of Repository
     public PatientServiceImpl(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
 
+    // Implemented methods
     @Override
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
@@ -29,7 +27,6 @@ public class PatientServiceImpl implements PatientService {
     public Patient getPatientById(Long id) {
         return patientRepository.findById(id).get();
     }
-
 
     @Override
     public Patient updatePatient(Patient patient) {

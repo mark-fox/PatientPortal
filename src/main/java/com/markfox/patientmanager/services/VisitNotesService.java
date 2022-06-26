@@ -2,8 +2,7 @@ package com.markfox.patientmanager.services;
 
 import com.markfox.patientmanager.models.VisitNotes;
 
-import java.util.List;
-
+// Visit Notes DAO class
 public interface VisitNotesService {
     VisitNotes addVisitNotes(VisitNotes notes);
 

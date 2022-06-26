@@ -19,20 +19,23 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     BCryptPasswordEncoder myPasswordEncoder;
 
+    // Setter for Password Encoder
+    // Challenge: Users were not being retrieved when this was set up with
+                // either Autowired or a Constructor (dependency injection)
     public void setMyPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.myPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    // Overridden method for retrieving User from database
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByEmail(username);
-        System.out.println("was a user retrieved: " + user);
         // Exception handling checking if User exists
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + username));
-
         return user.map(MyUserDetails::new).get();
     }
 
+    // Method for saving a new User to database
     @Override
     public User addNewUser(User user) {
         if (myPasswordEncoder == null) {

@@ -8,8 +8,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+// Patient Entity Repository
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
+    // Custom query to set all Patients' Doctor field to null for a specified Doctor
+    // Used when deleting a Doctor Entity
     @Modifying
     @Transactional
     @Query("update Patient p set p.doc = null where p.doc.docId = :doctorId")

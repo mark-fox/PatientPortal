@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MyErrorController implements ErrorController {
 
-//    Logger logger = LoggerFactory.getLogger(MyErrorController.class);
-
+    // Route for custom error page
     @RequestMapping("/error")
     public String handleError() {
         return "error";

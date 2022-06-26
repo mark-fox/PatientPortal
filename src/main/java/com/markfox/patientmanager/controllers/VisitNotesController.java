@@ -17,11 +17,13 @@ public class VisitNotesController {
     private final VisitNotesService visitNotesService;
     private final PatientService patientService;
 
+    // Constructor for dependency injections of Service classes
     public VisitNotesController(VisitNotesService visitNotesService, PatientService patientService) {
         this.visitNotesService = visitNotesService;
         this.patientService = patientService;
     }
 
+    // Route to add a new Visit Note
     @GetMapping("/newnotes/{id}")
     public String viewNewVisitNotes(@PathVariable Long id, Model model) {
         VisitNotes visitNotes = new VisitNotes();
@@ -31,6 +33,7 @@ public class VisitNotesController {
         return "newvisitnotes";
     }
 
+    // Return route to save a new Visit Note to database
     @PostMapping("/newnotes/{id}")
     public String addNewVisitNotes(@PathVariable Long id,
                                    @ModelAttribute("visit") VisitNotes visitNotes) {
@@ -40,10 +43,10 @@ public class VisitNotesController {
         return "redirect:/dashboard/{id}";
     }
 
+    // Route to delete an individual Visit Note
     @PostMapping("/deletenote/{id}")
     public String deleteVisitNotes(@PathVariable Long id) {
         visitNotesService.deleteVisitNoteById(id);
         return "redirect:/dashboard";
     }
-
 }

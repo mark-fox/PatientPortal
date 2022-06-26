@@ -19,18 +19,8 @@ public class User {
     private boolean active = true;
     private String roles = "USER";
 
-//    public User() {
-//
-//    }
-//
-//    public User(String email, String password, boolean active, String roles) {
-//        this.email = email;
-//        this.password = password;
-//        this.active = active;
-//        this.roles = roles;
-//    }
 
-
+    // Overridden methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,6 +34,7 @@ public class User {
         return Objects.hash(id, email, password, active, roles);
     }
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }

@@ -17,6 +17,7 @@ public class MyUserDetails implements UserDetails {
     private List<GrantedAuthority> authorities;
     private User myUser;
 
+    // Constructor
     public MyUserDetails(User user) {
         this.email = user.getEmail();
         this.password = user.getPassword();
@@ -27,6 +28,7 @@ public class MyUserDetails implements UserDetails {
         this.myUser = user;
     }
 
+    // Overridden methods
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
@@ -42,6 +44,7 @@ public class MyUserDetails implements UserDetails {
         return email;
     }
 
+    // Set to true as a default for now
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -62,6 +65,7 @@ public class MyUserDetails implements UserDetails {
         return active;
     }
 
+    // Getters and Setters
     public User getMyUser() {
         return myUser;
     }

@@ -5,7 +5,6 @@ import com.markfox.patientmanager.models.Patient;
 import com.markfox.patientmanager.models.VisitNotes;
 import com.markfox.patientmanager.repositories.PatientRepository;
 import com.markfox.patientmanager.repositories.VisitNotesRepository;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,7 @@ public class VisitNotesRepositoryTests {
     @Autowired
     private PatientRepository patientRepository;
 
+    // Testing to save Visit Notes to database with Repository
     @Test
     public void saveVisitNotesTest() {
         VisitNotes note = new VisitNotes();
@@ -29,6 +29,7 @@ public class VisitNotesRepositoryTests {
         String description = "testing description";
         LocalDate visitDate = LocalDate.now();
 
+        // Patient Entity needed to attach Visit Notes to
         Patient patient = new Patient();
         patient.setFirstName("Matt");
         patient.setLastName("Damon");
@@ -44,6 +45,7 @@ public class VisitNotesRepositoryTests {
         Assertions.assertEquals(reason, savedNote.getVisitReason());
     }
 
+    // Testing to delete Visit Notes from database
     @Test
     public void deleteVisitNotesTest() {
         VisitNotes note = new VisitNotes();
@@ -51,6 +53,7 @@ public class VisitNotesRepositoryTests {
         String description = "testing description";
         LocalDate visitDate = LocalDate.now();
 
+        // Patient Entity needed to attach Visit Notes to
         Patient patient = new Patient();
         patient.setFirstName("Matt");
         patient.setLastName("Damon");

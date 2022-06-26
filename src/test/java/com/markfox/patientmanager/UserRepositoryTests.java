@@ -17,6 +17,7 @@ public class UserRepositoryTests {
     @Autowired
     private UserRepository userRepository;
 
+    // Testing to save User to database with Repository
     @Test
     public void saveUserTest() {
         User user = new User();
@@ -29,6 +30,7 @@ public class UserRepositoryTests {
         Assertions.assertEquals(email, savedUser.getEmail());
     }
 
+    // Testing to delete User from database
     @Test
     public void deleteUserTest() {
         User user = new User();
@@ -46,6 +48,7 @@ public class UserRepositoryTests {
 
     }
 
+    // Testing custom query method used during Authentication
     @Test
     public void findByEmailTest() {
         User user = new User();

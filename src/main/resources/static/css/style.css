@@ -1,12 +1,19 @@
-
+/*Navbar parent tag for staying on top*/
 header {
     position: sticky;
     top: 0;
 }
 
+
+/*Global tags*/
 textarea {
     resize: none;
 }
+
+legend {
+    font-weight: bold;
+}
+
 
 /*Bootstrap Icons:*/
 .bi, .fa {

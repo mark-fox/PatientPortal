@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+// User Entity Repository
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    // Method used during Authentication
     Optional<User> findByEmail(String email);
 }

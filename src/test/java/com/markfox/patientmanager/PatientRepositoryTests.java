@@ -4,8 +4,7 @@ import com.markfox.patientmanager.models.Doctor;
 import com.markfox.patientmanager.models.Patient;
 import com.markfox.patientmanager.repositories.DoctorRepository;
 import com.markfox.patientmanager.repositories.PatientRepository;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -23,7 +22,9 @@ public class PatientRepositoryTests {
     @Autowired
     private DoctorRepository doctorRepository;
 
+    // Testing to save a Patient to database with Repository
     @Test
+    @Order(1)
     public void savePatientTest() {
         Patient patient = new Patient();
         patient.setFirstName("Matt");
@@ -36,7 +37,9 @@ public class PatientRepositoryTests {
         Assertions.assertNotNull(savedPatient);
     }
 
+    // Testing to modify the Patient in database with Repository
     @Test
+    @Order(2)
     public void updatePatientTest() {
         Patient patient = new Patient();
         patient.setFirstName("Matt");
@@ -44,6 +47,7 @@ public class PatientRepositoryTests {
         patient.setDoc(new Doctor());
         Patient savedPatient = patientRepository.save(patient);
 
+        // Modifying values
         savedPatient.setFirstName("Andy");
         savedPatient.setLastName("Dandy");
 
@@ -56,6 +60,7 @@ public class PatientRepositoryTests {
         Assertions.assertEquals(updatedPatient.getId(), savedPatient.getId());
     }
 
+    // Testing to delete Patient from database
     @Test
     public void deletePatientTest() {
         Patient patient = new Patient();
@@ -70,6 +75,8 @@ public class PatientRepositoryTests {
         Assertions.assertEquals(Optional.empty(), patientRepository.findById(savedPatient.getId()));
     }
 
+    // Testing custom query method that sets each Patient's Doctor to null
+    // for when a Doctor is deleted from the database
     @Test
     public void updatePatientDocByDocIdTest() {
         Doctor doctor = new Doctor();

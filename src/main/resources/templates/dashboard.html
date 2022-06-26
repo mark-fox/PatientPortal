@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Patients</title>
     <div th:replace="fragments/stylesheets :: styles"></div>
 </head>
 <body>
@@ -13,9 +13,10 @@
     <div class="container">
         <div class="box border mt-5 p-5">
 
-            <h1>Patients</h1>
             <fieldset>
+                <legend>Patients</legend>
                 <table class="table thead-light table-hover table-striped">
+                    <!--                    Header Row-->
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -28,6 +29,8 @@
                         <th scope="col">Doctor</th>
                     </tr>
                     </thead>
+
+                    <!--                    Data Rows-->
                     <tbody>
                     <tr th:each="patient: ${patients}">
                         <td><a th:text="${patient.id}" th:href="@{/dashboard/{id} (id=${patient.id})}">
@@ -38,6 +41,7 @@
                         <td th:text="${patient.gender}"></td>
                         <td th:text="${patient.raceEthnicity}"></td>
                         <td th:text="${patient.lastVisitDate}"></td>
+                        <!--                        Displays null if a Doctor has not been assigned yet or was deleted-->
                         <td><a th:text="${patient?.doc?.firstName} + ' ' + ${patient?.doc?.lastName}"
                                th:href="@{/doctors/{docId} (docId=${patient?.doc?.docId})}"></a></td>
                     </tr>

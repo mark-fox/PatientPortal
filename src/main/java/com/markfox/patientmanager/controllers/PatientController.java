@@ -1,23 +1,15 @@
 package com.markfox.patientmanager.controllers;
 
-import com.markfox.patientmanager.models.Doctor;
 import com.markfox.patientmanager.models.Patient;
-import com.markfox.patientmanager.models.VisitNotes;
 import com.markfox.patientmanager.services.DoctorService;
 import com.markfox.patientmanager.services.PatientService;
 import com.markfox.patientmanager.services.VisitNotesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 @Controller
 public class PatientController {
@@ -26,72 +18,53 @@ public class PatientController {
     private DoctorService doctorService;
     private final VisitNotesService visitNotesService;
 
+    // Constructor for dependency injections of Service classes
     public PatientController(PatientService patientService, VisitNotesService visitNotesService) {
         this.patientService = patientService;
         this.visitNotesService = visitNotesService;
     }
 
-
-//    @GetMapping("/login")
-//    public String viewLoginPage() {
-//        return "login";
-//    }
-
+    // Route to list of all Patients
     @GetMapping("/dashboard")
     public String viewAllPatients(Model model) {
         model.addAttribute("patients", patientService.getAllPatients());
-
-        // for testing:
-//        VisitNotes testnote = new VisitNotes();
-//        testnote.setDescription("desc");
-//        testnote.setVisitReason("reas");
-//        testnote.setVisitDate(LocalDate.of(2001,1,1));
-//        testnote.setVisitsPatient(patientService.getPatientById(15L));
-//        visitNotesService.addVisitNotes(testnote);
-
         return "dashboard";
     }
 
+    // Route for adding a new Patient
     @GetMapping("/dashboard/newpatient")
     public String viewNewPatient(Model model) {
         Patient patient = new Patient();
         model.addAttribute("patient", patient);
         model.addAttribute("doctors", doctorService.getAllDoctors());
+        // Dates used for part of data restriction
         model.addAttribute("currDate", LocalDate.now());
         model.addAttribute("limitDate", LocalDate.now().minusYears(150));
-//        System.out.println(doctorService.getAllDoctors());
         return "newpatient";
     }
-    @PostMapping("/dashboard/newpatient")
-    public String addNewPatient(@ModelAttribute("patient") Patient patient, Model model) { //  @RequestParam Doctor doc,
-//        System.out.println(patient.getId());
-//        System.out.println(patient.getFirstName());
-//        System.out.println(patient.getLastName());
-//        System.out.println(patient.getDoc().getDocId());
-//        System.out.println(patient.getDoc().getFirstName());
-//        System.out.println(patient.getDoc().getDocsPatients());
-//        System.out.println(model);
-//        System.out.println(model.getAttribute("doctorId"));
-//        System.out.println(model.getAttribute("doctorid"));
-//        Doctor testdoc = doctorService.getDoctorById(1L); // new Doctor("rick", "sanchez");
-//        patient.setDoc(testdoc);
-//        Patient test = new Patient("abc", "dfe", "mydoc", testdoc);
-//        patientService.addPatient(test);
 
+    // Return route for saving a new Patient to database
+    @PostMapping("/dashboard/newpatient")
+    public String addNewPatient(@ModelAttribute("patient") Patient patient, Model model) {
+        // Returned Doctor object only contains their ID
         patient.setDoc(doctorService.getDoctorById(patient.getDoc().getDocId()));
         patientService.addPatient(patient);
         return "redirect:/dashboard";
     }
 
+    // Route to view an individual Patient
     @GetMapping("/dashboard/{id}")
     public String viewPatient(@PathVariable Long id, Model model) {
         model.addAttribute("patient", patientService.getPatientById(id));
         model.addAttribute("doctors", doctorService.getAllDoctors());
         model.addAttribute("visits", patientService.getAllVisitNotes(id));
+        // Dates used for part of data restriction
         model.addAttribute("currDate", LocalDate.now());
         model.addAttribute("limitDate", LocalDate.now().minusYears(150));
         return "viewpatient";
     }
+
+    // Return route for updating an individual Patient
     @PostMapping("/dashboard/{id}")
     public String editPatient(@PathVariable Long id, @ModelAttribute("patient") Patient patient, Model model) {
         Patient savedPatient = patientService.getPatientById(id);
@@ -104,33 +77,14 @@ public class PatientController {
         savedPatient.setLastVisitDate(patient.getLastVisitDate());
         savedPatient.setRaceEthnicity(patient.getRaceEthnicity());
         savedPatient.setDoc(doctorService.getDoctorById(patient.getDoc().getDocId()));
-//        System.out.println("update route reached");
         patientService.updatePatient(savedPatient);
         return "redirect:/dashboard";
     }
 
+    // Route to delete an individual Patient
     @PostMapping(value="/dashboard/{id}", params = "delPatient")
     public String deletePatient(@PathVariable Long id) {
-        System.out.println("delete route reached");
         patientService.deletePatientById(id);
         return "redirect:/dashboard";
     }
-    // onetomany attempt
-//    @GetMapping("/testing/{docId}")
-//    public Page<Patient> testingattempt(@PathVariable(value="docId") Long docId, Pageable pageable) {
-//        return patientService.getPatientByDocId(docId, pageable);
-//    }
-//    @GetMapping("/testing/{docId}")
-//    public String testingattempt(@PathVariable(value="docId") Long docId, Model model) {
-//        model.addAttribute("patients", doctorService.getAllDocsPatients(docId));
-//        return "redirect:viewdoctor";
-////        return patientService.getPatientsByDocId(docId);
-//    }
-
-//    @GetMapping("/test")
-//    public String testing(Model model) {
-//        model.addAttribute("patient", patientService.getPatientById(7L));
-//        model.addAttribute("visits", patientService.getAllVisitNotes(7L));
-//        return "testform";
-//    }
 }

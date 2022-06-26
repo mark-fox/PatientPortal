@@ -1,7 +1,6 @@
 package com.markfox.patientmanager.controllers;
 
 import com.markfox.patientmanager.models.Doctor;
-import com.markfox.patientmanager.models.Patient;
 import com.markfox.patientmanager.services.DoctorService;
 import com.markfox.patientmanager.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +19,14 @@ public class DoctorController {
     private PatientService patientService;
 
 
-
+    // Route to list of all Doctors
     @GetMapping("/doctors")
     public String viewAllDoctors(Model model) {
         model.addAttribute("doctors", doctorService.getAllDoctors());
         return "doctors";
     }
 
+    // Route to viewing an individual Doctor and their Patients
     @GetMapping("/doctors/{id}")
     public String viewDoctor(@PathVariable Long id, Model model) {
         model.addAttribute("doctor", doctorService.getDoctorById(id));
@@ -34,19 +34,22 @@ public class DoctorController {
         return "viewdoctor";
     }
 
+    // Route for adding a new Doctor
     @GetMapping("/doctors/newdoctor")
     public String viewNewDoctor(Model model) {
         Doctor doctor = new Doctor();
         model.addAttribute("doctor", doctor);
         return "newdoctor";
     }
+
+    // Return route to save a new Doctor to database
     @PostMapping("/doctors/newdoctor")
     public String addNewDoctor(@ModelAttribute("doctor") Doctor doctor) {
         doctorService.addDoctor(doctor);
         return "redirect:/doctors";
     }
 
-    // Change to PostMapping if change to button
+    // Route to delete an individual Doctor based on the provided ID
     @GetMapping("/doctors/delete/{id}")
     public String deleteDoctor(@PathVariable Long id) {
         patientService.removePatientsDocByDocId(id);

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -20,13 +19,13 @@ public class VisitNotes {
     @Column(name="reason", nullable = false)
     private String visitReason;
 
+    // Field for large String entries
     @Lob
     @Column(name="description")
     private String description;
 
     @Column(name="visitdate", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    @Temporal(TemporalType.DATE)
     private LocalDate visitDate;
 
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
@@ -34,8 +33,8 @@ public class VisitNotes {
     @JsonIgnore
     private Patient visitsPatient;
 
+    // Constructors
     public VisitNotes() {
-
     }
     public VisitNotes(String visitReason, String description, LocalDate visitDate) {
         this.visitReason = visitReason;
@@ -43,6 +42,7 @@ public class VisitNotes {
         this.visitDate = visitDate;
     }
 
+    // Overridden methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,6 +56,7 @@ public class VisitNotes {
         return Objects.hash(id, visitReason, description, visitDate, visitsPatient);
     }
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }

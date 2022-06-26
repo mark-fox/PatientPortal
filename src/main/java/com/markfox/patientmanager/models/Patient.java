@@ -5,7 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -43,10 +42,7 @@ public class Patient {
     @Column(name = "ethnicity")
     private String raceEthnicity;
 
-    @ManyToOne(fetch=FetchType.LAZY, optional = true
-//            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-//            CascadeType.DETACH, CascadeType.REFRESH}
-    )
+    @ManyToOne(fetch=FetchType.LAZY, optional = true)
     @JoinColumn(name="docId", nullable = true)   // name of join-column added to patients table
     @JsonIgnore
     private Doctor doc;
@@ -54,19 +50,18 @@ public class Patient {
     @OneToMany(targetEntity = VisitNotes.class, mappedBy = "visitsPatient", cascade = {CascadeType.REMOVE})
     private List<VisitNotes> patientVisits;
 
+    // Constructors
     public Patient() {
-
     }
 
+    // Currently, the only required fields are in this constructor
     public Patient(String firstName, String lastName, Doctor doc) {
         this.firstName = firstName;
         this.lastName = lastName;
-//        this.doctor = doctor;
         this.doc = doc;
     }
 
-
-
+    // Static lists of values for dropdown menus
     public List<String> getEthnicityList() {
         return Arrays.asList("White",
                 "Black or African American",
@@ -74,12 +69,11 @@ public class Patient {
                 "Asian",
                 "Native Hawaiian or Other Pacific Islander");
     }
-
     public List<String> getGenderList() {
         return Arrays.asList("Male", "Female");
     }
 
-
+    // Overridden methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,6 +87,7 @@ public class Patient {
         return Objects.hash(id, firstName, lastName, dateOfBirth, gender, phoneNumber, emailAddress, lastVisitDate, raceEthnicity, doc, patientVisits);
     }
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -117,14 +112,6 @@ public class Patient {
         this.lastName = lastName;
     }
 
-//    public String getDoctor() {
-//        return doctor;
-//    }
-//
-//    public void setDoctor(String doctor) {
-//        this.doctor = doctor;
-//    }
-
     public Doctor getDoc() {
         return doc;
     }
@@ -132,7 +119,6 @@ public class Patient {
     public void setDoc(Doctor doc) {
         this.doc = doc;
     }
-
 
     public List<VisitNotes> getPatientVisits() {
         return patientVisits;

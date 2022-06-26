@@ -17,6 +17,7 @@ public class DoctorRepositoryTests {
     @Autowired
     private DoctorRepository doctorRepository;
 
+//    Testing to save a Doctor to database with Repository
     @Test
     public void saveDoctorTest() {
         Doctor doctor = new Doctor();
@@ -30,6 +31,7 @@ public class DoctorRepositoryTests {
         Assertions.assertNotEquals(doctor.getDocId(), OptionalLong.of(savedDoctor.getDocId()));
     }
 
+    // Testing to delete Doctor from database
     @Test
     public void deleteDoctorTest() {
         Doctor doctor = new Doctor();

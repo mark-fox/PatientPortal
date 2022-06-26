@@ -15,6 +15,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // Main routes that direct to Login page
     @GetMapping("/")
     public String homePage() {
         return "login";
@@ -23,16 +24,18 @@ public class UserController {
     public String loginPage() {
         return "login";
     }
+
+    // Route to Registration page for creating new User
     @GetMapping("/registration")
     public String showRegistration(Model model) {
         model.addAttribute("user", new User());
         return "registration";
     }
 
+    // Return route for saving a new User to database
     @PostMapping("/registration")
     public String registerNewUser(@ModelAttribute("user") User user) {
         userService.addNewUser(user);
-//        return "redirect:/registration?success";
         return "redirect:/dashboard";
     }
 }

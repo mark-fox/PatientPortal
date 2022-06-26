@@ -5,6 +5,7 @@ import com.markfox.patientmanager.models.Patient;
 
 import java.util.List;
 
+// Doctor DAO class
 public interface DoctorService {
     List<Doctor> getAllDoctors();
     Doctor getDoctorById(Long id);

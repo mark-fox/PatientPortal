@@ -13,6 +13,7 @@
     <div class="container">
         <div class="box border mt-5 p-5">
 
+            <!--            Displays the Patient's name as part of header-->
             <fieldset>
                 <legend th:text="'Adding New Visit Notes for ' + ${patient.firstName} + ' ' + ${patient.lastName}">
                     Adding New Visit Notes
@@ -21,11 +22,13 @@
                     <div class="row">
                         <div class="col">
                             <label>Reason for Visit:</label>
-                            <input class="form-control" type="text" th:field="*{visitReason}" placeholder="Patient's visit was regarding..." required>
+                            <input class="form-control" type="text" th:field="*{visitReason}"
+                                   placeholder="Patient's visit was regarding..." required>
                         </div>
                         <div class="col-3">
                             <label>Date of Visit:</label>
-                            <input class="form-control" type="date" th:attr="max=${currDate}" th:field="*{visitDate}" required>
+                            <input class="form-control" type="date" th:attr="max=${currDate}" th:field="*{visitDate}"
+                                   required>
                         </div>
                     </div>
                     <div class="row">
