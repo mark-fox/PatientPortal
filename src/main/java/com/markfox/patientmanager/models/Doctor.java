@@ -1,6 +1,7 @@
 package com.markfox.patientmanager.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,9 +13,11 @@ public class Doctor {
     private Long docId;
 
     @Column(name="firstname", nullable = false)
+    @NotEmpty(message = "Must enter a First Name")
     private String firstName;
 
     @Column(name="lastname", nullable = false)
+    @NotEmpty(message = "Must enter a Last Name")
     private String lastName;
 
     // mappedBy the Doctor attribute in Patient class
