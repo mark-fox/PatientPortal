@@ -1,6 +1,7 @@
 package com.markfox.patientmanager.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 @Entity
@@ -11,9 +12,11 @@ public class User {
     private Long id;
 
     @Column (name="email", nullable=false, unique = true)
+    @Email(message = "Must enter a valid email address")
     private String email;
 
     @Column(name = "password", nullable = false)
+    @Size(min=4, message="Password must be at least 4 characters")
     private String password;
 
     private boolean active = true;
