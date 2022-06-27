@@ -1,5 +1,6 @@
 package com.markfox.patientmanager;
 
+import com.markfox.patientmanager.exceptions.MyException;
 import com.markfox.patientmanager.models.Doctor;
 import com.markfox.patientmanager.repositories.DoctorRepository;
 import com.markfox.patientmanager.services.DoctorService;
@@ -17,7 +18,7 @@ public class DoctorServiceTests {
     DoctorRepository doctorRepository;
 
     @Test
-    public void getDoctorByIdTest() {
+    public void getDoctorByIdTest() throws MyException {
         Doctor doctor = new Doctor();
         doctor.setFirstName("Bob");
         doctor.setLastName("Barker");

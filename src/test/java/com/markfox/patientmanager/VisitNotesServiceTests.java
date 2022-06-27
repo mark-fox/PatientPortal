@@ -1,5 +1,6 @@
 package com.markfox.patientmanager;
 
+import com.markfox.patientmanager.exceptions.MyException;
 import com.markfox.patientmanager.models.Doctor;
 import com.markfox.patientmanager.models.Patient;
 import com.markfox.patientmanager.models.VisitNotes;
@@ -23,7 +24,7 @@ public class VisitNotesServiceTests {
     DoctorService doctorService;
 
     @Test
-    public void addVisitNotesTest() {
+    public void addVisitNotesTest() throws MyException {
         Doctor doctor = new Doctor();
         doctor.setFirstName("Bob");
         doctor.setLastName("Barker");

@@ -1,5 +1,6 @@
 package com.markfox.patientmanager.controllers;
 
+import com.markfox.patientmanager.exceptions.MyException;
 import com.markfox.patientmanager.models.Patient;
 import com.markfox.patientmanager.services.DoctorService;
 import com.markfox.patientmanager.services.PatientService;
@@ -45,7 +46,7 @@ public class PatientController {
 
     // Return route for saving a new Patient to database
     @PostMapping("/dashboard/newpatient")
-    public String addNewPatient(@Valid @ModelAttribute("patient") Patient patient, BindingResult result, Model model) {
+    public String addNewPatient(@Valid @ModelAttribute("patient") Patient patient, BindingResult result, Model model) throws MyException {
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
             model.addAttribute("doctors", doctorService.getAllDoctors());
@@ -74,7 +75,7 @@ public class PatientController {
 
     // Return route for updating an individual Patient
     @PostMapping("/dashboard/{id}")
-    public String editPatient(@PathVariable Long id, @Valid @ModelAttribute("patient") Patient patient, BindingResult result, Model model) {
+    public String editPatient(@PathVariable Long id, @Valid @ModelAttribute("patient") Patient patient, BindingResult result, Model model) throws MyException {
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
             model.addAttribute("doctors", doctorService.getAllDoctors());
