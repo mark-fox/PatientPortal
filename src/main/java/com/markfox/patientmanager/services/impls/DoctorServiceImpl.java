@@ -25,12 +25,12 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Doctor getDoctorById(Long id) {
-        return doctorRepository.findById(id).get();
+        return doctorRepository.findById(id).isPresent() ? doctorRepository.findById(id).get() : null;
     }
 
-//    @Override
+    @Override
     public List<Patient> getAllDocsPatients(Long id) {
-        return doctorRepository.findById(id).get().getDocsPatients();
+        return doctorRepository.findById(id).isPresent() ? doctorRepository.findById(id).get().getDocsPatients() : null;
     }
 
     @Override
