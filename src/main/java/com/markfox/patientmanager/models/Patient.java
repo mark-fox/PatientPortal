@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -17,13 +18,17 @@ public class Patient {
     private Long id;
 
     @Column(name = "firstname", nullable = false)
+    @NotEmpty(message = "Must enter a First Name")
     private String firstName;
 
     @Column(name = "lastname", nullable = false)
+    @NotEmpty(message = "Must enter a Last Name")
     private String lastName;
 
     @Column(name = "dob")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past(message = "Date of Birth can only be in the past")
+    @NotNull(message = "Please enter the Date of Birth")
     private LocalDate dateOfBirth;
 
     @Column(name = "gender")
@@ -33,10 +38,13 @@ public class Patient {
     private String phoneNumber;
 
     @Column(name = "email")
+    @Email(message = "Must enter a valid email address")
+    @NotEmpty(message = "Must enter an email address")
     private String emailAddress;
 
     @Column(name = "lastvisit")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @PastOrPresent(message = "Last Visit must be a past date")
     private LocalDate lastVisitDate;
 
     @Column(name = "ethnicity")

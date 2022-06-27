@@ -27,16 +27,19 @@
                             <div class="col">
                                 <label>First Name:</label>
                                 <input class="form-control" id="firstNameInput" type="text" th:field="*{firstName}"
-                                       required/>
+                                       />
+                                <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
                             </div>
                             <div class="col">
                                 <label>Last Name:</label>
-                                <input class="form-control" type="text" th:field="*{lastName}" required/>
+                                <input class="form-control" type="text" th:field="*{lastName}" />
+                                <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
                             </div>
                             <div class="col-3">
                                 <label>Date of Birth:</label>
-                                <input class="form-control" type="date" th:field="*{dateOfBirth}"
-                                       th:attr="max=${currDate}, min=${limitDate}"/>
+                                <input class="form-control" type="date" th:attr="max=${currDate}, min=${limitDate}" th:field="*{dateOfBirth}"
+                                       />
+                                <div class="alert alert-warning" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
                             </div>
                         </div>
                         <div class="row">
@@ -63,14 +66,15 @@
                             </div>
                             <div class="col">
                                 <label>Date of Last Visit:</label>
-                                <input class="form-control" type="date" th:field="*{lastVisitDate}"
-                                       th:attr="max=${currDate}"/>
+                                <input class="form-control" type="date" th:attr="max=${currDate}" th:field="*{lastVisitDate}"/>
+                                <div class="alert alert-warning" th:if="${#fields.hasErrors('lastVisitDate')}" th:errors="*{lastVisitDate}"></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <label>Email Address:</label>
                                 <input class="form-control" type="email" th:field="*{emailAddress}"/>
+                                <div class="alert alert-warning" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
                             </div>
                             <div class="col-4">
                                 <label>Doctor:</label>

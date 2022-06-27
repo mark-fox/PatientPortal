@@ -19,16 +19,19 @@
                         <div class="col">
                             <label>First Name:</label>
                             <input class="form-control" type="text" th:field="*{firstName}"
-                                   placeholder="Enter the patient's first name" required/>
+                                   placeholder="Enter the patient's first name" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
                         </div>
                         <div class="col">
                             <label>Last Name:</label>
                             <input class="form-control" type="text" th:field="*{lastName}"
-                                   placeholder="Enter the patient's last name" required/>
+                                   placeholder="Enter the patient's last name" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
                         </div>
                         <div class="col-3">
                             <label>Date of Birth:</label>
-                            <input class="form-control" type="date" th:field="*{dateOfBirth}" th:attr="max=${currDate}, min=${limitDate}"/>
+                            <input class="form-control" type="date" th:attr="max=${currDate}, min=${limitDate}" th:field="*{dateOfBirth}" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -42,8 +45,6 @@
                                 <option th:each="gender:${patient.getGenderList()}"
                                         th:value="${gender}"
                                         th:text="${gender}"></option>
-<!--                                <option value="Male">Male</option>-->
-<!--                                <option value="Female">Female</option>-->
                             </select>
                         </div>
                         <div class="col">
@@ -52,24 +53,18 @@
                                 <option th:each="race:${patient.getEthnicityList()}"
                                         th:value="${race}"
                                         th:text="${race}"></option>
-<!--                                <option value="White">White</option>-->
-<!--                                <option value="Black or African American">Black or African American</option>-->
-<!--                                <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>-->
-<!--                                <option value="Asian">Asian</option>-->
-<!--                                <option value="Native Hawaiian or Other Pacific Islander">Native Hawaiian or Other Pacific Islander</option>-->
                             </select>
                         </div>
                         <div class="col">
                             <label></label>
                             <input class="form-control" type="text" readonly/>
                         </div>
-
-
                     </div>
                     <div class="row">
                         <div class="col">
                             <label>Email Address:</label>
                             <input class="form-control" type="email" th:field="*{emailAddress}"/>
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
                         </div>
                         <div class="col-4">
                             <label>Doctor</label>

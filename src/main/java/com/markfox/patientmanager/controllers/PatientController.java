@@ -7,8 +7,10 @@ import com.markfox.patientmanager.services.VisitNotesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 @Controller
@@ -16,12 +18,10 @@ public class PatientController {
     private final PatientService patientService;
     @Autowired
     private DoctorService doctorService;
-    private final VisitNotesService visitNotesService;
 
     // Constructor for dependency injections of Service classes
-    public PatientController(PatientService patientService, VisitNotesService visitNotesService) {
+    public PatientController(PatientService patientService) {
         this.patientService = patientService;
-        this.visitNotesService = visitNotesService;
     }
 
     // Route to list of all Patients
@@ -45,7 +45,15 @@ public class PatientController {
 
     // Return route for saving a new Patient to database
     @PostMapping("/dashboard/newpatient")
-    public String addNewPatient(@ModelAttribute("patient") Patient patient, Model model) {
+    public String addNewPatient(@Valid @ModelAttribute("patient") Patient patient, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("errors", result.getAllErrors());
+            model.addAttribute("doctors", doctorService.getAllDoctors());
+            // Dates used for part of data restriction
+            model.addAttribute("currDate", LocalDate.now());
+            model.addAttribute("limitDate", LocalDate.now().minusYears(150));
+            return "newpatient";
+        }
         // Returned Doctor object only contains their ID
         patient.setDoc(doctorService.getDoctorById(patient.getDoc().getDocId()));
         patientService.addPatient(patient);
@@ -66,7 +74,16 @@ public class PatientController {
 
     // Return route for updating an individual Patient
     @PostMapping("/dashboard/{id}")
-    public String editPatient(@PathVariable Long id, @ModelAttribute("patient") Patient patient, Model model) {
+    public String editPatient(@PathVariable Long id, @Valid @ModelAttribute("patient") Patient patient, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("errors", result.getAllErrors());
+            model.addAttribute("doctors", doctorService.getAllDoctors());
+            model.addAttribute("visits", patientService.getAllVisitNotes(id));
+            // Dates used for part of data restriction
+            model.addAttribute("currDate", LocalDate.now());
+            model.addAttribute("limitDate", LocalDate.now().minusYears(150));
+            return "viewpatient";
+        }
         Patient savedPatient = patientService.getPatientById(id);
         savedPatient.setFirstName(patient.getFirstName());
         savedPatient.setLastName(patient.getLastName());
