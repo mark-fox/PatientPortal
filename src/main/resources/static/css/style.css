@@ -22,9 +22,13 @@ legend {
 }
 
 /*Background colors per page*/
-/*.patientPage {*/
-/*    background-color: #7AE582;*/
-/*}*/
-/*.doctorPage {*/
-/*    background-color: #00A5CF;*/
-/*}*/
+.patientPage, .patientPage .main, .patientPage .container {
+    background-color: #91ce94;
+}
+.doctorPage, .doctorPage .main, .doctorPage .container {
+    background-color: #04c6fc;
+}
+.box {
+    background-color: white;
+    border-radius: 1rem;
+}
