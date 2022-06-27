@@ -63,7 +63,7 @@ public class PatientController {
 
     // Route to view an individual Patient
     @GetMapping("/dashboard/{id}")
-    public String viewPatient(@PathVariable Long id, Model model) {
+    public String viewPatient(@PathVariable Long id, Model model) throws MyException {
         model.addAttribute("patient", patientService.getPatientById(id));
         model.addAttribute("doctors", doctorService.getAllDoctors());
         model.addAttribute("visits", patientService.getAllVisitNotes(id));
@@ -101,7 +101,7 @@ public class PatientController {
 
     // Route to delete an individual Patient
     @PostMapping(value="/dashboard/{id}", params = "delPatient")
-    public String deletePatient(@PathVariable Long id) {
+    public String deletePatient(@PathVariable Long id) throws MyException {
         patientService.deletePatientById(id);
         return "redirect:/dashboard";
     }

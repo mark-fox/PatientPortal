@@ -1,5 +1,6 @@
 package com.markfox.patientmanager.services.impls;
 
+import com.markfox.patientmanager.exceptions.MyException;
 import com.markfox.patientmanager.models.Patient;
 import com.markfox.patientmanager.models.VisitNotes;
 import com.markfox.patientmanager.repositories.PatientRepository;
@@ -24,31 +25,49 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient getPatientById(Long id) {
+    public Patient getPatientById(Long id) throws MyException {
+        if (id == null) {
+            throw new MyException("Error: Patient ID cannot be null");
+        }
         return patientRepository.findById(id).isPresent() ? patientRepository.findById(id).get() : null;
     }
 
     @Override
-    public Patient updatePatient(Patient patient) {
+    public Patient updatePatient(Patient patient) throws MyException {
+        if (patient == null) {
+            throw new MyException("Error: Patient object cannot be null");
+        }
         return patientRepository.save(patient);
     }
 
     @Override
-    public void deletePatientById(Long id) {
+    public void deletePatientById(Long id) throws MyException {
+        if (id == null) {
+            throw new MyException("Error: Patient ID cannot be null");
+        }
         patientRepository.deleteById(id);
     }
 
     @Override
-    public Patient addPatient(Patient patient) {
+    public Patient addPatient(Patient patient) throws MyException {
+        if (patient == null) {
+            throw new MyException("Error: Patient object cannot be null");
+        }
         return patientRepository.save(patient);
     }
 
     @Override
-    public List<VisitNotes> getAllVisitNotes(Long id) {
+    public List<VisitNotes> getAllVisitNotes(Long id) throws MyException {
+        if (id == null) {
+            throw new MyException("Error: Patient ID cannot be null");
+        }
         return patientRepository.findById(id).isPresent() ? patientRepository.findById(id).get().getPatientVisits() : null;
     }
 
-    public void removePatientsDocByDocId(Long id) {
+    public void removePatientsDocByDocId(Long id) throws MyException {
+        if (id == null) {
+            throw new MyException("Error: Doctor ID cannot be null");
+        }
         patientRepository.updatePatientDocByDocId(id);
     }
 }

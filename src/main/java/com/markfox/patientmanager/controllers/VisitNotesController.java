@@ -1,5 +1,6 @@
 package com.markfox.patientmanager.controllers;
 
+import com.markfox.patientmanager.exceptions.MyException;
 import com.markfox.patientmanager.models.VisitNotes;
 import com.markfox.patientmanager.services.PatientService;
 import com.markfox.patientmanager.services.VisitNotesService;
@@ -25,7 +26,7 @@ public class VisitNotesController {
 
     // Route to add a new Visit Note
     @GetMapping("/newnotes/{id}")
-    public String viewNewVisitNotes(@PathVariable Long id, Model model) {
+    public String viewNewVisitNotes(@PathVariable Long id, Model model) throws MyException {
         VisitNotes visitNotes = new VisitNotes();
         model.addAttribute("visit", visitNotes);
         model.addAttribute("patient", patientService.getPatientById(id));
@@ -36,7 +37,7 @@ public class VisitNotesController {
     // Return route to save a new Visit Note to database
     @PostMapping("/newnotes/{id}")
     public String addNewVisitNotes(@PathVariable Long id,
-                                   @ModelAttribute("visit") VisitNotes visitNotes) {
+                                   @ModelAttribute("visit") VisitNotes visitNotes) throws MyException {
         visitNotes.setVisitsPatient(patientService.getPatientById(id));
         visitNotes.setVisitDate(visitNotes.getVisitDate());
         visitNotesService.addVisitNotes(visitNotes);
