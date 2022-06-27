@@ -44,4 +44,13 @@ public class UserServiceImpl implements UserService {
         user.setPassword(myPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
+
+    // Method for changing the User's password
+    @Override
+    public void updateUserPassword(String newPassword, String email) {
+        if (myPasswordEncoder == null) {
+            setMyPasswordEncoder(new BCryptPasswordEncoder());
+        }
+        userRepository.updateUserPasswordByEmail(myPasswordEncoder.encode(newPassword), email);
+    }
 }

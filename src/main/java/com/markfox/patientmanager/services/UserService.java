@@ -6,4 +6,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 // User DAO class
 public interface UserService extends UserDetailsService {
     User addNewUser(User user);
+    void updateUserPassword(String newPassword, String email);
 }
