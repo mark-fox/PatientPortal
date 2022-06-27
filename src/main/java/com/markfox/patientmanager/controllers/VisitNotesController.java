@@ -46,7 +46,7 @@ public class VisitNotesController {
 
     // Route to delete an individual Visit Note
     @PostMapping("/deletenote/{id}")
-    public String deleteVisitNotes(@PathVariable Long id) {
+    public String deleteVisitNotes(@PathVariable Long id) throws MyException {
         visitNotesService.deleteVisitNoteById(id);
         return "redirect:/dashboard";
     }
