@@ -33,6 +33,7 @@ public class VisitNotesRepositoryTests {
         Patient patient = new Patient();
         patient.setFirstName("Matt");
         patient.setLastName("Damon");
+        patient.setDateOfBirth(LocalDate.now().minusYears(1));
         patient.setDoc(new Doctor());
         Patient savedPatient = patientRepository.save(patient);
 
@@ -57,6 +58,7 @@ public class VisitNotesRepositoryTests {
         Patient patient = new Patient();
         patient.setFirstName("Matt");
         patient.setLastName("Damon");
+        patient.setDateOfBirth(LocalDate.now().minusYears(1));
         patient.setDoc(new Doctor());
         Patient savedPatient = patientRepository.save(patient);
 

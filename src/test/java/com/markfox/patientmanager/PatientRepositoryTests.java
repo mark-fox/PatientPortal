@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,8 @@ public class PatientRepositoryTests {
         Patient patient = new Patient();
         patient.setFirstName("Matt");
         patient.setLastName("Damon");
+        patient.setDateOfBirth(LocalDate.now().minusYears(1));
+        patient.setEmailAddress("test@test.com");
         patient.setDoc(new Doctor());
 
         Assertions.assertNull(patient.getId());
@@ -44,6 +47,8 @@ public class PatientRepositoryTests {
         Patient patient = new Patient();
         patient.setFirstName("Matt");
         patient.setLastName("Damon");
+        patient.setDateOfBirth(LocalDate.now().minusYears(1));
+        patient.setEmailAddress("test@test.com");
         patient.setDoc(new Doctor());
         Patient savedPatient = patientRepository.save(patient);
 
@@ -66,6 +71,8 @@ public class PatientRepositoryTests {
         Patient patient = new Patient();
         patient.setFirstName("Matt");
         patient.setLastName("Damon");
+        patient.setDateOfBirth(LocalDate.now().minusYears(1));
+        patient.setEmailAddress("test@test.com");
         patient.setDoc(new Doctor());
         Patient savedPatient = patientRepository.save(patient);
 
@@ -88,6 +95,8 @@ public class PatientRepositoryTests {
         Patient patient = new Patient();
         patient.setFirstName("Matt");
         patient.setLastName("Damon");
+        patient.setDateOfBirth(LocalDate.now().minusYears(1));
+        patient.setEmailAddress("test@test.com");
         patient.setDoc(savedDoctor);
 
         Patient savedPatient = patientRepository.save(patient);

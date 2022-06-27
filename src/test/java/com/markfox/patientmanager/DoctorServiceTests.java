@@ -24,7 +24,6 @@ public class DoctorServiceTests {
         Doctor savedDoctor = doctorRepository.save(doctor);
 
         Doctor foundDoctor = doctorService.getDoctorById(savedDoctor.getDocId());
-        System.out.println(foundDoctor);
         Assertions.assertEquals(foundDoctor.getFirstName(), savedDoctor.getFirstName());
     }
 }
