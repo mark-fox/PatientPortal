@@ -6,6 +6,8 @@ import com.markfox.patientmanager.repositories.DoctorRepository;
 import com.markfox.patientmanager.services.DoctorService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -26,5 +28,18 @@ public class DoctorServiceTests {
 
         Doctor foundDoctor = doctorService.getDoctorById(savedDoctor.getDocId());
         Assertions.assertEquals(foundDoctor.getFirstName(), savedDoctor.getFirstName());
+    }
+
+    // Parameterized Test that creates Doctor objects based off the argument
+    // and saves to the database
+    @ParameterizedTest
+    @ValueSource(strings = {"FirstName1;LastName1", "FirstName2;LastName2"})
+    public void addingNewDoctorsTest(String args) throws MyException {
+        String[] names = args.split(";");
+        Doctor doctor = new Doctor(names[0], names[1]);
+        Doctor savedDoctor = doctorService.addDoctor(doctor);
+        // Tests that the firstName field matches
+        Assertions.assertEquals(doctor.getFirstName().equals(savedDoctor.getFirstName()),
+                                savedDoctor.getFirstName().equals(names[0]));
     }
 }
