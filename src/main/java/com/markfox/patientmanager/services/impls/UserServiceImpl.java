@@ -1,5 +1,6 @@
 package com.markfox.patientmanager.services.impls;
 
+import com.markfox.patientmanager.exceptions.MyException;
 import com.markfox.patientmanager.models.MyUserDetails;
 import com.markfox.patientmanager.models.User;
 import com.markfox.patientmanager.repositories.UserRepository;
@@ -37,7 +38,10 @@ public class UserServiceImpl implements UserService {
 
     // Method for saving a new User to database
     @Override
-    public User addNewUser(User user) {
+    public User addNewUser(User user) throws MyException {
+        if (user == null) {
+            throw new MyException("Error: User object cannot be null");
+        }
         if (myPasswordEncoder == null) {
             setMyPasswordEncoder(new BCryptPasswordEncoder());
         }

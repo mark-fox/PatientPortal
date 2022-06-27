@@ -1,5 +1,6 @@
 package com.markfox.patientmanager;
 
+import com.markfox.patientmanager.exceptions.MyException;
 import com.markfox.patientmanager.models.User;
 import com.markfox.patientmanager.services.UserService;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +14,7 @@ public class UserServiceTests {
     UserService userService;
 
     @Test
-    public void addNewUserTest() {
+    public void addNewUserTest() throws MyException {
         User user = new User();
         user.setEmail("test@test.com");
         user.setPassword("password");

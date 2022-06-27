@@ -1,5 +1,6 @@
 package com.markfox.patientmanager.controllers;
 
+import com.markfox.patientmanager.exceptions.MyException;
 import com.markfox.patientmanager.models.User;
 import com.markfox.patientmanager.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class UserController {
 
     // Return route for saving a new User to database
     @PostMapping("/registration")
-    public String registerNewUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+    public String registerNewUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) throws MyException {
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
             return "registration";
