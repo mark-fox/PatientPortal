@@ -49,6 +49,6 @@ public class UserController {
         // Saves the new User to the database
         userService.addNewUser(user);
         // Sends the user back to the Login page to log into the website
-        return "redirect:/";
+        return "redirect:/?registered";
     }
 }
