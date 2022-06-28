@@ -29,6 +29,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     // AUTHORIZATION
+    // Sets specific routes to require authorization and permitting the rest (login and registration)
+    // Sets custom login page and where to redirect after logging in
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

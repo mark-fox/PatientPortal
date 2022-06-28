@@ -23,13 +23,16 @@ public class VisitNotesServiceTests {
     @Autowired
     DoctorService doctorService;
 
+    // Tests adding new Visit Notes to database
     @Test
     public void addVisitNotesTest() throws MyException {
+        // Doctor sometimes needed to attach to Patient
         Doctor doctor = new Doctor();
         doctor.setFirstName("Bob");
         doctor.setLastName("Barker");
         Doctor savedDoctor = doctorService.addDoctor(doctor);
 
+        // Patient needed to attach Visit Notes to
         Patient patient = new Patient();
         patient.setFirstName("Matt");
         patient.setLastName("Damon");

@@ -16,6 +16,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Method used during Authentication
     Optional<User> findByEmail(String email);
 
+    // Custom query to update a User's password for times when they forgot it
     @Modifying
     @Transactional
     @Query("update User u set u.password = :newPassword where u.email = :userEmail")

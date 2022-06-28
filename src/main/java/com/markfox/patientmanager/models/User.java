@@ -4,21 +4,28 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Objects;
 
+// Entity class for Users and the associated database table
 @Entity
 @Table(name = "users")
 public class User {
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    // Required username/email attribute that must be unique in database
     @Column (name="email", nullable=false, unique = true)
     @Email(message = "Must enter a valid email address")
     private String email;
 
+    // Simple data validation added to password attribute
+    // Setting Max is for the encrypted value's length
     @Column(name = "password", nullable = false)
     @Size(min=4, message="Password must be at least 4 characters")
     private String password;
 
+    // Default values assigned to these attributes for now, but
+    // could be implemented in future versions
     private boolean active = true;
     private String roles = "USER";
 
@@ -36,6 +43,7 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, email, password, active, roles);
     }
+
 
     // Getters and Setters
     public Long getId() {

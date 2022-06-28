@@ -14,34 +14,47 @@
 
             <fieldset>
                 <legend>Add New Patient</legend>
+<!--                Form for submitting request to add a new Patient to database-->
+<!--                The form layout matches the viewpatient View with one exception-->
                 <form th:action="@{/dashboard/newpatient}" th:object="${patient}" method="post">
                     <div class="row">
                         <div class="col">
                             <label>First Name:</label>
                             <input class="form-control" type="text" th:field="*{firstName}"
-                                   placeholder="Enter the patient's first name" />
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                                   placeholder="Enter the patient's first name"/>
+<!--                            Data Validation message for empty value-->
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}"
+                                 th:errors="*{firstName}"></div>
                         </div>
                         <div class="col">
                             <label>Last Name:</label>
                             <input class="form-control" type="text" th:field="*{lastName}"
-                                   placeholder="Enter the patient's last name" />
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+                                   placeholder="Enter the patient's last name"/>
+<!--                            Data Validation message for empty value-->
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}"
+                                 th:errors="*{lastName}"></div>
                         </div>
                         <div class="col-3">
                             <label>Date of Birth:</label>
-                            <input class="form-control" type="date" th:attr="max=${currDate}, min=${limitDate}" th:field="*{dateOfBirth}" />
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
+<!--                            Attributes limit the selection of dates outside of given range-->
+                            <input class="form-control" type="date" th:attr="max=${currDate}, min=${limitDate}"
+                                   th:field="*{dateOfBirth}"/>
+<!--                            Data Validation message for date range and format-->
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('dateOfBirth')}"
+                                 th:errors="*{dateOfBirth}"></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label>Phone Number:</label>
-                            <input class="form-control" type="tel" th:field="*{phoneNumber}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+<!--                            Simple pattern requirement for input value-->
+                            <input class="form-control" type="tel" th:field="*{phoneNumber}"
+                                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
                         </div>
                         <div class="col">
                             <label>Gender:</label>
                             <select class="form-select" th:field="*{gender}">
+<!--                                Generates dropdown menu based on static list in Patient entity class-->
                                 <option th:each="gender:${patient.getGenderList()}"
                                         th:value="${gender}"
                                         th:text="${gender}"></option>
@@ -50,11 +63,13 @@
                         <div class="col">
                             <label>Race/Ethnicity:</label>
                             <select class="form-select" th:field="*{raceEthnicity}">
+<!--                                Generates dropdown menu based on static list in Patient entity class-->
                                 <option th:each="race:${patient.getEthnicityList()}"
                                         th:value="${race}"
                                         th:text="${race}"></option>
                             </select>
                         </div>
+<!--                        Empty input tag where Date Last Visited field will be in viewpatient View-->
                         <div class="col">
                             <label></label>
                             <input class="form-control" type="text" readonly/>
@@ -64,11 +79,14 @@
                         <div class="col">
                             <label>Email Address:</label>
                             <input class="form-control" type="email" th:field="*{emailAddress}"/>
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
+<!--                            Data Validation message for valid email address value-->
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('emailAddress')}"
+                                 th:errors="*{emailAddress}"></div>
                         </div>
                         <div class="col-4">
                             <label>Doctor</label>
                             <select class="form-select" name="doctorId" th:field="*{doc.docId}">
+<!--                                Generates dropdown menu of provided list of Doctors from Controller-->
                                 <option th:each="doctor:${doctors}" th:value="${doctor.docId}"
                                         th:text="'Dr. ' + ${doctor.firstName} + ' ' + ${doctor.lastName}"></option>
                             </select>
@@ -78,6 +96,7 @@
                     <br>
 
                     <div>
+<!--                        Submittal button-->
                         <button class="btn btn-primary">Add Patient</button>
                     </div>
                 </form>

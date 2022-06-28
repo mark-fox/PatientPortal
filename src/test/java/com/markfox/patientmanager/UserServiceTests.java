@@ -13,6 +13,7 @@ public class UserServiceTests {
     @Autowired
     UserService userService;
 
+    // Tests adding a new User to the database
     @Test
     public void addNewUserTest() throws MyException {
         User user = new User();

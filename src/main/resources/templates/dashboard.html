@@ -15,8 +15,9 @@
 
             <fieldset>
                 <legend>Patients</legend>
+<!--                Table for displaying all Patients-->
                 <table class="table thead-light table-hover table-striped">
-                    <!--                    Header Row-->
+<!--                    Header Row-->
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -30,8 +31,9 @@
                     </tr>
                     </thead>
 
-                    <!--                    Data Rows-->
+<!--                    Data Rows-->
                     <tbody>
+<!--                    Loops through passed list of Patients and adds their attributes to matching fields-->
                     <tr th:each="patient: ${patients}">
                         <td><a th:text="${patient.id}" th:href="@{/dashboard/{id} (id=${patient.id})}">
                         </a></td>
@@ -41,13 +43,13 @@
                         <td th:text="${patient.gender}"></td>
                         <td th:text="${patient.raceEthnicity}"></td>
                         <td th:text="${patient.lastVisitDate}"></td>
-                        <!--                        Displays null if a Doctor has not been assigned yet or was deleted-->
+<!--                        Displays null if a Doctor has not been assigned yet or was deleted-->
                         <td><a th:text="${patient?.doc?.firstName} + ' ' + ${patient?.doc?.lastName}"
                                th:href="@{/doctors/{docId} (docId=${patient?.doc?.docId})}"></a></td>
                     </tr>
                     </tbody>
                 </table>
-
+<!--                Form for directing to Controller for a different page to add a new Patient-->
                 <form th:action="@{/dashboard/newpatient}">
                     <button class="btn btn-primary"><i class="bi-person-plus"></i> Add Patient</button>
                 </form>

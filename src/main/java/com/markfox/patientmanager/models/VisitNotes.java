@@ -1,6 +1,5 @@
 package com.markfox.patientmanager.models;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -8,9 +7,11 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+// Entity class for Visit Notes and the associated database table
 @Entity
 @Table(name="visitnotes")
 public class VisitNotes {
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="visitId", nullable = false)
@@ -28,6 +29,7 @@ public class VisitNotes {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate visitDate;
 
+    // Mapped Patient entity
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
     @JoinColumn(name="patientId", nullable = true)
     @JsonIgnore
@@ -55,6 +57,7 @@ public class VisitNotes {
     public int hashCode() {
         return Objects.hash(id, visitReason, description, visitDate, visitsPatient);
     }
+
 
     // Getters and Setters
     public Long getId() {

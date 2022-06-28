@@ -15,27 +15,32 @@
 
             <fieldset>
                 <legend>Add New Doctor</legend>
+<!--                Form for submitting request to add a new Doctor to database-->
                 <form th:action="@{/doctors/newdoctor}" th:object="${doctor}" method="post">
                     <div class="form-group row">
                         <label class="col-2 col-form-label">First Name:</label>
                         <div class="col-4">
                             <input class="form-control" type="text" th:field="*{firstName}"
-                                   placeholder="Enter the doctor's first name" />
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                                   placeholder="Enter the doctor's first name"/>
+<!--                            Data Validation message for empty value-->
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}"
+                                 th:errors="*{firstName}"></div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Last Name:</label>
                         <div class="col-4">
                             <input class="form-control" type="text" th:field="*{lastName}"
-                                   placeholder="Enter the doctor's last name" />
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+                                   placeholder="Enter the doctor's last name"/>
+<!--                            Data Validation message for empty value-->
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}"
+                                 th:errors="*{lastName}"></div>
                         </div>
                     </div>
+<!--                    Submittal button-->
                     <button class="btn btn-primary">Add Doctor</button>
                 </form>
             </fieldset>
-
         </div>
     </div>
 </div>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Service class for Doctor entity and DoctorRepository
 @Service
 public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepository doctorRepository;
@@ -18,12 +19,13 @@ public class DoctorServiceImpl implements DoctorService {
         this.doctorRepository = doctorRepository;
     }
 
-    // Implemented methods
+    // Retrieves all Doctors in database to be displayed in table or dropdown menu
     @Override
     public List<Doctor> getAllDoctors() {
         return doctorRepository.findAll();
     }
 
+    // Retrieves the specified Doctor by their ID if they exist
     @Override
     public Doctor getDoctorById(Long id) throws MyException {
         if (id == null || id < 1) {
@@ -32,6 +34,7 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.findById(id).isPresent() ? doctorRepository.findById(id).get() : null;
     }
 
+    // Queries for List of Patients with the specified Doctor, which is a mapped attribute
     @Override
     public List<Patient> getAllDocsPatients(Long id) throws MyException {
         if (id == null || id < 1) {
@@ -40,6 +43,7 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.findById(id).isPresent() ? doctorRepository.findById(id).get().getDocsPatients() : null;
     }
 
+    // Adds the provided Doctor to database
     @Override
     public Doctor addDoctor(Doctor doctor) throws MyException {
         if (doctor == null) {
@@ -48,6 +52,7 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.save(doctor);
     }
 
+    // Deletes the specified Doctor from database
     @Override
     public void deleteDoctorById(Long id) throws MyException {
         if (id == null || id < 1) {

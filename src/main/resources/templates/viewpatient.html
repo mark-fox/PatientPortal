@@ -13,44 +13,51 @@
     <div class="container">
         <div class="box border mt-5 p-5">
 
-
-            <!--            Patient Info Section-->
-
+<!--            Patient Info Section-->
             <fieldset>
+<!--                Displays the Patient's name as part of the header-->
                 <legend th:text="${patient.firstName} + ' ' + ${patient.lastName} + '\'s Info'">Patient Info</legend>
+<!--                Form for submitting request to Controller for updating the current Patient-->
+<!--                The form is also used to display the Patient's attributes-->
                 <form th:action="@{/dashboard/{id} (id=${patient.id})}" th:object="${patient}" method="post"
                       id="patientForm">
-                    <!--                    All fields are disabled at start to make them readonly until decided to edit-->
-                    <!--                    Also makes enabling easier with one tag instead of multiple tags-->
+<!--                    All fields are disabled at start to make them readonly until decided to edit-->
+<!--                    Also makes enabling easier with one tag instead of multiple tags-->
                     <fieldset id="patientFormFieldset" disabled>
                         <div class="row">
                             <div class="col">
                                 <label>First Name:</label>
                                 <input class="form-control" id="firstNameInput" type="text" th:field="*{firstName}"
                                        />
+<!--                                Data Validation message for empty value-->
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
                             </div>
                             <div class="col">
                                 <label>Last Name:</label>
                                 <input class="form-control" type="text" th:field="*{lastName}" />
+<!--                                Data Validation message for empty value-->
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
                             </div>
                             <div class="col-3">
                                 <label>Date of Birth:</label>
+<!--                                Attributes limit the date that can be selected-->
                                 <input class="form-control" type="date" th:attr="max=${currDate}, min=${limitDate}" th:field="*{dateOfBirth}"
                                        />
+<!--                                Data Validation message for date range-->
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <label>Phone Number:</label>
+<!--                                Simple phone number pattern requirement-->
                                 <input class="form-control" type="tel" th:field="*{phoneNumber}"
                                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
                             </div>
                             <div class="col">
                                 <label>Gender:</label>
                                 <select class="form-select" th:field="*{gender}">
+<!--                                    Generates dropdown menu from static list-->
                                     <option th:each="gender:${patient.getGenderList()}"
                                             th:value="${gender}"
                                             th:text="${gender}"></option>
@@ -59,6 +66,7 @@
                             <div class="col">
                                 <label>Race/Ethnicity:</label>
                                 <select class="form-select" th:field="*{raceEthnicity}">
+<!--                                    Generates dropdown menu from static list-->
                                     <option th:each="race:${patient.getEthnicityList()}"
                                             th:value="${race}"
                                             th:text="${race}"></option>
@@ -66,7 +74,9 @@
                             </div>
                             <div class="col">
                                 <label>Date of Last Visit:</label>
+<!--                                Attributes limit the date range that can be selected-->
                                 <input class="form-control" type="date" th:attr="max=${currDate}" th:field="*{lastVisitDate}"/>
+<!--                                Data Validation message for date range-->
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('lastVisitDate')}" th:errors="*{lastVisitDate}"></div>
                             </div>
                         </div>
@@ -74,10 +84,12 @@
                             <div class="col">
                                 <label>Email Address:</label>
                                 <input class="form-control" type="email" th:field="*{emailAddress}"/>
+<!--                                Data Validation message for email format-->
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></div>
                             </div>
                             <div class="col-4">
                                 <label>Doctor:</label>
+<!--                                Generates a dropdown menu of all Doctors with the Patient's assigned Doctor selected-->
                                 <select class="form-select" name="doctorId" th:field="*{doc.docId}">
                                     <option th:each="doctor:${doctors}" th:value="${doctor.docId}"
                                             th:text="'Dr. ' + ${doctor.firstName} + ' ' + ${doctor.lastName}"
@@ -88,6 +100,8 @@
                     </fieldset>
                     <br>
                     <div>
+<!--                        Delete button with confirmation dialog box-->
+<!--                        Name field is used as param in Controller-->
                         <button class="btn btn-danger float-end"
                                 type="submit"
                                 name="delPatient"
@@ -97,6 +111,8 @@
                             Delete Patient
                         </button>
                         <button class="btn btn-success float-end" id="patientUpdateBtn" disabled>Update Patient</button>
+<!--                        Toggle button that enables the fieldset for editing-->
+<!--                        This is handled with JQuery in javascript file-->
                         <button class="btn btn-secondary float-end" id="toggleBtn" value="true"><i
                                 class="bi-pencil"></i> Enable Edit
                         </button>
@@ -105,18 +121,15 @@
             </fieldset>
 
             <hr>
-
-
-            <!--            Visit Notes Section-->
-
-
+<!--            Visit Notes Section-->
             <h3>Visit Notes</h3>
             <div>
+<!--                Form for routing to new page for adding a new Visit Notes object to current Patient-->
                 <form th:action="@{/newnotes/{id} (id=${patient.id})}">
                     <button class="btn btn-primary">Add Notes</button>
                 </form>
             </div>
-
+<!--            Generates disabled fields for all associated Visit Notes-->
             <div th:each="visit:${visits}">
                 <fieldset disabled>
                     <div class="row">
@@ -138,6 +151,7 @@
                     </div>
                 </fieldset>
                 <div class="row">
+<!--                    Delete button with confirmation dialog box-->
                     <form th:action="@{/deletenote/{id} (id=${visit.id})}" method="post">
                         <button class="btn btn-danger"
                                 type="submit"

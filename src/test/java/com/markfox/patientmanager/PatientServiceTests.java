@@ -19,6 +19,7 @@ public class PatientServiceTests {
     @Autowired
     DoctorService doctorService;
 
+//    Tests retrieving Patient by their ID
     @Test
     public void getPatientByIdTest() throws MyException {
         Doctor doctor = new Doctor();

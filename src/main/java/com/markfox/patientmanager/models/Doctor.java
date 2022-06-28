@@ -5,13 +5,16 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Objects;
 
+// Entity class for Doctors and the associated database table
 @Entity
 @Table(name="doctors")
 public class Doctor {
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long docId;
 
+    // Required Name attributes with data validation annotation
     @Column(name="firstname", nullable = false)
     @NotEmpty(message = "Must enter a First Name")
     private String firstName;
@@ -20,6 +23,7 @@ public class Doctor {
     @NotEmpty(message = "Must enter a Last Name")
     private String lastName;
 
+    // List of Patients associated with a single Doctor
     // mappedBy the Doctor attribute in Patient class
     @OneToMany(targetEntity = Patient.class, mappedBy = "doc")
     private List<Patient> docsPatients;

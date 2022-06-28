@@ -87,6 +87,7 @@ public class VisitNotesRepositoryTests {
         String description = "testing description";
         LocalDate visitDate = LocalDate.now();
 
+        // Doctor Entity sometimes needed to attach to Patient
         Doctor doctor = new Doctor();
         doctor.setFirstName("Bob");
         doctor.setLastName("Barker");

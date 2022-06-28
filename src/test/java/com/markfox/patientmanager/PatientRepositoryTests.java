@@ -15,9 +15,7 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-
 public class PatientRepositoryTests {
-
     @Autowired
     private PatientRepository patientRepository;
     @Autowired

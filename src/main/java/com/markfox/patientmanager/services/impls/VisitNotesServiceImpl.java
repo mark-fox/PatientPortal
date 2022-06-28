@@ -6,6 +6,7 @@ import com.markfox.patientmanager.repositories.VisitNotesRepository;
 import com.markfox.patientmanager.services.VisitNotesService;
 import org.springframework.stereotype.Service;
 
+// Service class for Visit Notes entity and VisitNotesRepository
 @Service
 public class VisitNotesServiceImpl implements VisitNotesService {
     private final VisitNotesRepository visitNotesRepository;
@@ -15,7 +16,7 @@ public class VisitNotesServiceImpl implements VisitNotesService {
         this.visitNotesRepository = repo;
     }
 
-    // Implemented methods
+    // Saves the provided Visit Notes to database
     @Override
     public VisitNotes addVisitNotes(VisitNotes notes) throws MyException {
         if (notes == null) {
@@ -24,6 +25,7 @@ public class VisitNotesServiceImpl implements VisitNotesService {
         return visitNotesRepository.save(notes);
     }
 
+    // Deletes the specified Visit Notes by its ID
     @Override
     public void deleteVisitNoteById(Long id) throws MyException {
         if (id == null) {

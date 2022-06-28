@@ -22,20 +22,19 @@
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
 
+<!--                                Form for submitting Login request to Spring Security-->
                                 <form th:action="@{/}" method="post">
-
-                                    <!-- error message -->
+<!-- Error message -->
                                     <div th:if="${param.error}">
                                         <div class="alert alert-danger">Invalid username or
                                             password.
                                         </div>
                                     </div>
-
-                                    <!-- logout message -->
+<!-- Logout message -->
                                     <div th:if="${param.logout}">
                                         <div class="alert alert-info">You have been logged out.</div>
                                     </div>
-
+<!--                                    Website name and a logo-->
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <span class="h1 fw-bold mb-0"><i
                                                 class="bi-heart-pulse"></i> Patient Portal</span>
@@ -44,6 +43,7 @@
                                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log into your
                                         account</h5>
 
+<!--                                    Input fields for logging in-->
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="username">Email address:</label>
                                         <input type="email" id="username" name="username"
@@ -54,20 +54,20 @@
                                         <input type="password" id="password" name="password"
                                                class="form-control form-control-lg" required/>
                                     </div>
-
+<!--                                    Submittal button-->
                                     <div class="pt-1 mb-4">
                                         <button type="submit" class="btn btn-dark btn-lg btn-block"><i
                                                 class="bi-door-open"></i> Login
                                         </button>
                                     </div>
 
-                                    <!--                                    To be implemented in future version-->
+<!--                                    To be implemented in future version-->
                                     <a class="small text-muted" href="#">Forgot password?</a>
+<!--                                    Route to Registration page for creating an account-->
                                     <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a
                                             th:href="@{/registration}"
                                             style="color: #393f81;">Register
                                         here</a></p>
-
                                 </form>
                             </div>
                         </div>

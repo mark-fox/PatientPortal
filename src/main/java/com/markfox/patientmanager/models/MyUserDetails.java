@@ -9,11 +9,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// Custom implementation of the UserDetails interface
 public class MyUserDetails implements UserDetails {
 
     private String email;
     private String password;
     private boolean active;
+    // Authorities (Roles) are included for future implementation, but
+    // do not serve any purpose at this time
     private List<GrantedAuthority> authorities;
     private User myUser;
 
@@ -28,7 +31,7 @@ public class MyUserDetails implements UserDetails {
         this.myUser = user;
     }
 
-    // Overridden methods
+    // Overridden required methods
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
@@ -50,11 +53,13 @@ public class MyUserDetails implements UserDetails {
         return true;
     }
 
+    // Set to true as a default for now
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    // Set to true as a default for now
     @Override
     public boolean isCredentialsNonExpired() {
         return true;

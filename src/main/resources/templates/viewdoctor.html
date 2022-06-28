@@ -14,9 +14,11 @@
         <div class="box border mt-5 p-5">
 
             <fieldset>
+<!--                Displays the Doctor's name as part of the header-->
                 <legend th:text="'Dr. ' + ${doctor.firstName} + ' ' + ${doctor.lastName} + '\'s Patient'">Doctor's
                     Patients
                 </legend>
+<!--                Table for displaying all the current Doctor's Patients-->
                 <table class="table thead-light table-hover table-striped">
                     <thead>
                     <tr>
@@ -26,6 +28,7 @@
                     </tr>
                     </thead>
                     <tbody>
+<!--                    Generates the field values from the passed list of Patients-->
                     <tr th:each="patient: ${patients}">
                         <td><a th:text="${patient.id}" th:href="@{/dashboard/{id} (id=${patient.id})}"></a></td>
                         <td th:text="${patient.firstName}"></td>
