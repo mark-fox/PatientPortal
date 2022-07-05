@@ -1,7 +1,5 @@
 package com.markfox.patientmanager.connections;
 
-import org.springframework.stereotype.Component;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,7 +17,6 @@ public class MyConnectionPool implements ConnectionPool {
     private static final int MAX_TIMEOUT = 5;
 
     public static MyConnectionPool create(String url, String user, String password) throws SQLException {
-        System.out.println("connection constructor reached");
         List<Connection> pool = new ArrayList<>(INITIAL_POOL_SIZE);
         for (int i = 0; i < INITIAL_POOL_SIZE; i++) {
             pool.add(createConnection(url, user, password));
