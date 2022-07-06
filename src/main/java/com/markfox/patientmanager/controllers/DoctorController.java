@@ -52,15 +52,15 @@ public class DoctorController {
     // Return route to save a new Doctor to database
     @PostMapping("/doctors/newdoctor")
     public String addNewDoctor(@Valid @ModelAttribute("doctor") Doctor doctor, BindingResult result, Model model) throws MyException {
-        // Checks for errors that are defined in the Doctor class
-        if (result.hasErrors()) {
-            // Sends user back to the same page they were on with list of errors to correct
-            model.addAttribute("errors", result.getAllErrors());
-            return "newdoctor";
-        }
-        // Saves the new Doctor to database
-        doctorService.addDoctor(doctor);
-        // Sends the user back to the main Doctor page
+//        // Checks for errors that are defined in the Doctor class
+//        if (result.hasErrors()) {
+//            // Sends user back to the same page they were on with list of errors to correct
+//            model.addAttribute("errors", result.getAllErrors());
+//            return "newdoctor";
+//        }
+//        // Saves the new Doctor to database
+//        doctorService.addDoctor(doctor);
+//        // Sends the user back to the main Doctor page
         return "redirect:/doctors";
     }
 
