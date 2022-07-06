@@ -46,9 +46,9 @@ public class DoctorServiceImpl implements DoctorService {
     // Adds the provided Doctor to database
     @Override
     public Doctor addDoctor(Doctor doctor) throws MyException {
-//        if (doctor == null) {
-//            throw new MyException("Error: Doctor object cannot be null");
-//        }
+        if (doctor == null) {
+            throw new MyException("Error: Doctor object cannot be null");
+        }
         return doctorRepository.save(doctor);
     }
 
