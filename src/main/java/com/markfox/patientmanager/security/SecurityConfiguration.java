@@ -54,5 +54,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.requiresChannel()
                 .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
                 .requiresSecure();
+        http.headers().httpStrictTransportSecurity().disable();
     }
 }
