@@ -3,6 +3,8 @@ This project is a web application management system for healthcare patients and 
 
 Tables are used to view all the entities at once with certain attributes about them (e.g. name, unique ID number, date of birth, etc.). Patient information can be modified by navigating to their individual page using a hyperlink in their table row.
 
+https://patientportalapp.herokuapp.com/
+
 ---
 ### Functional Requirements
 
